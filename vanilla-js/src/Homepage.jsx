@@ -9,13 +9,9 @@ export const Homepage = () => {
 
     const {randomMeal, setRandomMeal} = useContext(MealContext);
 
-
-  
-
-
     return (
         <>
-            {/* <RandomMeal /> */}
+            <RandomMeal />
             <h1>Homepage</h1>
         </>
     )
