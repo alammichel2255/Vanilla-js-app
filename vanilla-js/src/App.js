@@ -4,16 +4,65 @@ import Styled from 'styled-components'
 import { MealContext } from './MealContext';
 import { Header } from './Header'
 import { Homepage } from './Homepage'
+import { RandomMeal } from './RandomMeal';
 
 
 function App() {
+
+  // for searching meals, then displaying a list of appropriate meals
   const [mealArray, setMealArray] = useState([])
   const [mealSearchText, setMealSearchText] = useState('')
+
+  // for for passing in meal details if a user clicks on a picture
   const [individualMealDetails, setIndividualMealDetails] = useState({})
 
-  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails };
+  // for setting the random 'meal of the day'
+  //
+  const [randomMeal, setRandomMeal] = useState({});
 
-  ////////////Different search links////////////////
+  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal };
+
+  useEffect(() =>{  
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    .then(res => res.json())
+    .then(data => {
+    //   data.meals[0] 
+      setRandomMeal(data.meals[0])
+      console.log(randomMeal)
+      console.log(data.meals[0])
+    })
+    // .then(data => console.log('random meal', randomMeal))
+  }, [setRandomMeal])
+
+  
+  return (
+    <MealContext.Provider value={passContext}>
+
+      <Router>
+        <Header />
+        <Routes>
+
+          <Route path='/' element={<Homepage />} />
+          {/* <Route path='/' element={<RandomMeal/>}/> */}
+          {/* <Route path='/error' element={<ErrorLanding />} />
+          <Route path='/details/:id' element={<MealDetails />} />
+          <Route path='/searchResults' element={<SearchResults />} /> */}
+        </Routes>
+      </Router>
+      <div className="App">
+
+        Vanilla JS
+
+      </div>
+
+    </MealContext.Provider>
+
+  );
+}
+
+export default App;
+
+////////////Different search links////////////////
 
 
   // https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
@@ -44,29 +93,3 @@ function App() {
   //   .then((res) => res.json())
   //   .then((data) => setData(data))
   // }, [])
-
-  return (
-    <MealContext.Provider value={passContext}>
-
-      <Router>
-        <Header />
-        <Routes>
-
-          <Route path='/' element={<Homepage />} />
-          {/* <Route path='/error' element={<ErrorLanding />} />
-          <Route path='/details/:id' element={<MealDetails />} />
-          <Route path='/searchResults' element={<SearchResults />} /> */}
-        </Routes>
-      </Router>
-      <div className="App">
-
-        Vanilla JS
-
-      </div>
-
-    </MealContext.Provider>
-
-  );
-}
-
-export default App;
