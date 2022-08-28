@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Styled from 'styled-components'
 import { MealContext } from './MealContext';
 import { Header } from './Header'
 import { Homepage } from './Homepage'
 
 export const RandomMeal = () => {
-    const { randomMeal, setRandomMeal } = useContext(MealContext);
+    const { randomMeal, setRandomMeal, individualMealDetails, setIndividualMealDetails } = useContext(MealContext);
     console.log('random meal: ', randomMeal);
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
@@ -27,11 +28,17 @@ export const RandomMeal = () => {
 
     return (
         <>
-            <Link to={`/details/${randomMeal.id}`}>
+            {/* <Link to={`/details/${randomMeal.id}`}> */}
+            <div onClick={() => {
+                setIndividualMealDetails(randomMeal);
+                navigate(`/details/${randomMeal.idMeal}`)}
+            }>
                 <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
                 {/* <video width="640" height="480" src='https://www.youtube.com/watch?v=IqXEZUk4hWI' controls>XXDRVRV </video> */}
                 <h1>{randomMeal.strMeal}</h1>
-            </Link>
+            </div>
+
+            {/* </Link> */}
 
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom'
 import Styled from 'styled-components'
 import { MealContext } from './MealContext';
 import { Header } from './Header'
@@ -13,6 +13,8 @@ const MealDiv = styled.div`
 
 export const SearchResults = () => {
     const { mealArray, setMealArray, indivualMealDetails, setIndividualMealDetails} = useContext(MealContext);
+    const navigate = useNavigate();
+
     return (
         <>
             <div>SearchResult!</div>
@@ -20,9 +22,10 @@ export const SearchResults = () => {
                 {mealArray.meals.map(meal => {
                     return (
                         <div onClick={() => {
-                            setIndividualMealDetails(meal)
-                            console.log(meal)}
+                            setIndividualMealDetails(meal);
+                            navigate(`/details/${meal.idMeal}`)}
                             }>
+                                
                             <div>{meal.strMeal}</div>
                             <img src={meal.strMealThumb} alt={meal.strMeal} />
                             <ul>

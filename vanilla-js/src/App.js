@@ -6,6 +6,7 @@ import { Header } from './Header'
 import { Homepage } from './Homepage'
 import { RandomMeal } from './RandomMeal';
 import { SearchResults } from './SearchResults';
+import {MealDetails} from './MealDetails';
 
 
 function App() {
@@ -51,8 +52,8 @@ function App() {
         <Routes>
 
           <Route path='/' element={<Homepage />} />
-          {/* <Route path='/error' element={<ErrorLanding />} />
-          <Route path='/details/:id' element={<MealDetails />} />*/}
+          {/* <Route path='/error' element={<ErrorLanding />} />*/}
+          <Route path='/details/:id' element={<MealDetails />} />
           <Route path='/searchResults' element={<SearchResults />} />
         </Routes>
       </Router>
