@@ -12,14 +12,17 @@ const MealDiv = styled.div`
 `
 
 export const SearchResults = () => {
-    const { mealArray, setMealArray } = useContext(MealContext);
+    const { mealArray, setMealArray, indivualMealDetails, setIndividualMealDetails} = useContext(MealContext);
     return (
         <>
             <div>SearchResult!</div>
             <>
                 {mealArray.meals.map(meal => {
                     return (
-                        <div>
+                        <div onClick={() => {
+                            setIndividualMealDetails(meal)
+                            console.log(meal)}
+                            }>
                             <div>{meal.strMeal}</div>
                             <img src={meal.strMealThumb} alt={meal.strMeal} />
                             <ul>

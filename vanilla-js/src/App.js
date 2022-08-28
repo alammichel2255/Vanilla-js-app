@@ -51,7 +51,6 @@ function App() {
         <Routes>
 
           <Route path='/' element={<Homepage />} />
-          {/* <Route path='/' element={<RandomMeal/>}/> */}
           {/* <Route path='/error' element={<ErrorLanding />} />
           <Route path='/details/:id' element={<MealDetails />} />*/}
           <Route path='/searchResults' element={<SearchResults />} />
