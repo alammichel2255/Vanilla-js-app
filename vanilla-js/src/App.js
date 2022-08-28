@@ -5,6 +5,7 @@ import { MealContext } from './MealContext';
 import { Header } from './Header'
 import { Homepage } from './Homepage'
 import { RandomMeal } from './RandomMeal';
+import { SearchResults } from './SearchResults';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
   const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal };
 
+  // on loading, picks a random meal to display
   useEffect(() =>{  
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
     .then(res => res.json())
@@ -29,6 +31,16 @@ function App() {
       setRandomMeal(data.meals[0])
     })
   }, [])
+
+  // fetches per a search for meal name
+  useEffect(()=> {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
+    .then(res => res.json())
+    .then(data => {
+      setMealArray(data);
+      console.log('meal search:', data)
+    })
+  }, [mealSearchText])
 
   
   return (
@@ -41,8 +53,8 @@ function App() {
           <Route path='/' element={<Homepage />} />
           {/* <Route path='/' element={<RandomMeal/>}/> */}
           {/* <Route path='/error' element={<ErrorLanding />} />
-          <Route path='/details/:id' element={<MealDetails />} />
-          <Route path='/searchResults' element={<SearchResults />} /> */}
+          <Route path='/details/:id' element={<MealDetails />} />*/}
+          <Route path='/searchResults' element={<SearchResults />} />
         </Routes>
       </Router>
       <div className="App">
@@ -83,9 +95,3 @@ export default App;
 
   // Filter by Area: www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
 
-  // useEffect(() => {
-  //   let url = ''
-  //   fetch(url)
-  //   .then((res) => res.json())
-  //   .then((data) => setData(data))
-  // }, [])

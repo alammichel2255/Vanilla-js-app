@@ -11,8 +11,8 @@ export const Homepage = () => {
 
     return (
         <>
-            <RandomMeal />
             <h1>Homepage</h1>
+            <RandomMeal />
         </>
     )
 }

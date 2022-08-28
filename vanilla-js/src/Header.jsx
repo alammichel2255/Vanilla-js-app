@@ -3,18 +3,20 @@ import React, { useState, useContext } from "react";
 import VanillaJS from "./VanillaJS.png";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import  Styled from "styled-components";
+import { SearchResults } from "./SearchResults";
 
 
 
 
 export const Header = () => {
-    // const {mealSearchText, setMealSearchText} = useContext(MealContext);
+    const {mealSearchText, setMealSearchText} = useContext(MealContext);
     const [searchText, setSearchText] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // setMealSearchText(searchText);
+        setMealSearchText(searchText);
+        navigate('/searchResults');
     }
     return (
         <div className="header">
