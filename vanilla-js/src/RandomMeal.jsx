@@ -33,20 +33,11 @@ export const RandomMeal = () => {
                 setIndividualMealDetails(randomMeal);
                 navigate(`/details/${randomMeal.idMeal}`)}
             }>
+                <h1>{randomMeal.strMeal}</h1>
                 <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
                 {/* <video width="640" height="480" src='https://www.youtube.com/watch?v=IqXEZUk4hWI' controls>XXDRVRV </video> */}
-                <h1>{randomMeal.strMeal}</h1>
             </div>
 
-            {/* </Link> */}
-
-
-
-            {/* AN EXAMPLE OF AN IFRAME FROM YOUTUBE */}
-            {/* <iframe width="480" height="360" src={`https://www.youtube.com/embed/IqXEZUk4hWI`} title="Moroccan Almond Cookies - Ghriyba" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-
-            {/* IAN'S ATTEMPTS TO EMBED VIDEOS FOR EACH MEAL */}
-            {/* <iframe width="640" height="360" src={`https://www.youtube.com/embed/${randomMeal.strYoutube.slice(randomMeal.strYoutube.indexOf('=')+1)}`} title="Homemade Clam Chowder Recipe - Laura Vitale - Laura in the Kitchen Episode 413" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
         </>
 
     )

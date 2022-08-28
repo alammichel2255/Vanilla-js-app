@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link, } from 'react-router-dom'
 import Styled from 'styled-components'
 import { MealContext } from './MealContext';
 import { Header } from './Header'
@@ -7,6 +7,7 @@ import { Homepage } from './Homepage'
 import { RandomMeal } from './RandomMeal';
 import { SearchResults } from './SearchResults';
 import {MealDetails} from './MealDetails';
+import {ErrorLanding} from './ErrorLanding';
 
 
 function App() {
@@ -33,15 +34,16 @@ function App() {
     })
   }, [])
 
-  // fetches per a search for meal name
-  useEffect(()=> {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
-    .then(res => res.json())
-    .then(data => {
-      setMealArray(data);
-      console.log('meal search:', data)
-    })
-  }, [mealSearchText])
+  // // fetches per a search for meal name
+  // useEffect(()=> {
+  //   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     data.meals ? setMealArray(data) : console.log('Error');
+
+  //     console.log('meal search:', data)
+  //   })
+  // }, [mealSearchText])
 
   
   return (
@@ -52,7 +54,7 @@ function App() {
         <Routes>
 
           <Route path='/' element={<Homepage />} />
-          {/* <Route path='/error' element={<ErrorLanding />} />*/}
+          <Route path='/error' element={<ErrorLanding />} />
           <Route path='/details/:id' element={<MealDetails />} />
           <Route path='/searchResults' element={<SearchResults />} />
         </Routes>
