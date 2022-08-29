@@ -9,7 +9,13 @@ import { Dropdown } from "./Dropdown"
 
 export const Submenu = ({sub}) => {
     return(
-        <li>thing</li>
+        // <li>thing</li>
+        <ul>
+            {sub.map(item => (
+                <li>{item}</li>
+            ))}
+
+        </ul>
         // {submenu.map(item => {
         //     return(
         //         <li>{item}</li>

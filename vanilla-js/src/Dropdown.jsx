@@ -12,6 +12,15 @@ import { HeaderMenuItems } from './HeaderMenuItems';
 import { Submenu } from './Submenu';
 
 export const Dropdown = () => {
+
+    const [categorySubMenu, setCategorySubMenu] = useState([]);
+
+    useEffect(() => {
+        fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+            .then(res => res.json())
+            .then(data => console.log("categories", data))
+    }, [])
+
     const headerMenuItems = [
         {
             title: 'Category',
@@ -36,12 +45,13 @@ export const Dropdown = () => {
             {headerMenuItems.map((item) => (
                 <div>
                     {item.title}
-                    <ul>
+                    <Submenu sub={item.subMenu} />
+                    {/* <ul>
                         {item.subMenu.map((subMenuItem) => (
                             // <li>{subMenuItem}</li>
                             <Submenu/>
                         ))}
-                    </ul>
+                    </ul> */}
 
                 </div>
             ))}

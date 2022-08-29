@@ -14,7 +14,7 @@ export const ErrorLanding = () => {
                 .then(res => res.json())
                 .then(data => {
                     setRandomMeal(data.meals[0])
-                })}>Or perhaps a different meal?</button>
+                })}>Or peerhaps a different meal?</button>
             <RandomMeal />
             <div>
 

@@ -1,26 +1,27 @@
 import { MealContext } from "./MealContext";
 import React, { useState, useContext, useEffect } from "react";
 import VanillaJS from "./VanillaJS.png";
+import VanillaJS2 from "./VanillaJS2.png";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { SearchResults } from "./SearchResults";
 import { ErrorLanding } from "./ErrorLanding";
 import { Dropdown } from "./Dropdown";
-import { GlobalStyle } from "./GlobalStyle";
+
 
 
 const StyledHeader = styled.header`
-  background-color: #ebfbff;
-  padding: 40px 0;
+  background-color: #e0ffff;
+  padding: 10px 0;
   &:hover {
-    background-color: white;
+    background-color: #fafad2;
     cursor: pointer;
   }
   `
   const Container = styled.div`
   width: 1000px;
   max-width: 100%;
-  padding: 0 20px;
+  padding: 0 10px;
   margin: 0 auto;
   `
   const Nav = styled.nav`
@@ -28,6 +29,7 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
+  
   `
 const Button = styled.button`
 border-radius: 50px;
@@ -42,18 +44,27 @@ color: black;
 &:hover {
   opacity: 0.8;
   transform: scale (0.98);
-  font-type: bold;
+  font-type: poppins;
 `
-const Logo = styled.img``
+const Logo = styled.img`
+width: 200px;
+
+`
 
 const Flex = styled.div`
 display: flex;
 align-items: center;
+text-align: center;
 
 & > div,
 & >ul {
   flex: 1;
 }`
+
+const Image = styled.img`
+width: 350px;
+margin-left: 40px;
+`
 
 
 export const Header = () => {
@@ -62,16 +73,16 @@ export const Header = () => {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
-  // fetches per a search for meal name
-  useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
-      .then(res => res.json())
-      .then(data => {
-        data.meals ? setMealArray(data) : navigate('/error');
+  // // fetches per a search for meal name
+  // useEffect(() => {
+  //   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       data.meals ? setMealArray(data) : navigate('/error');
 
-        console.log('meal search:', data)
-      })
-  }, [mealSearchText])
+  //       console.log('meal search:', data)
+  //     })
+  // }, [mealSearchText])
 
 
 
@@ -81,7 +92,7 @@ export const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setMealSearchText(searchText);
-    navigate('/searchResults');
+    navigate(`/searchResults/${searchText}`);
   }
   return (
 
@@ -99,14 +110,14 @@ export const Header = () => {
         </form>
         </Nav>
         <Flex>
-        <div>
+        <div style={{marginLeft:'-25%'}}>
           <h1>Vanilla JS Restaurant</h1>
           <p> We are changing the way you eat! The choice is yours..</p>
             <Button bg='#E8E47D' color='white'>
               Click Here For Random Recipe!
             </Button>
         </div>
-
+        <Image src={VanillaJS2} alt="VanillaJS2"/>
           </Flex>
       </Container>
     </StyledHeader>

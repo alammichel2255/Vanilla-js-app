@@ -57,7 +57,7 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='/error' element={<ErrorLanding />} />
           <Route path='/details/:id' element={<MealDetails />} />
-          <Route path='/searchResults' element={<SearchResults />} />
+          <Route path='/searchResults/:query' element={<SearchResults />} />
         
         </Routes>
       </Router>
