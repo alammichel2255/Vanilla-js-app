@@ -7,23 +7,26 @@ import { SearchResults } from "./SearchResults";
 import { ErrorLanding } from "./ErrorLanding";
 import { Dropdown } from "./Dropdown"
 
-export const Submenu = ({sub}) => {
-    return(
+export const Submenu = ({ sub }) => {
+    return (
         // <li>thing</li>
         <ul>
-            {sub.map(item => (
-                <li>{item}</li>
-            ))}
+            {sub.map(item => {
+                return (
+                    <li>{item}</li>
+
+                )
+            })}
 
         </ul>
         // {submenu.map(item => {
         //     return(
         //         <li>{item}</li>
         //     )
-       
+
         // })
-        
+
         // }
- 
+
     )
 }

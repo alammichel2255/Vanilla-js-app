@@ -36,6 +36,7 @@ export const MealDetails = () => {
                 const tempArray = ingredientsArray;
                 tempArray.push(`${ingredients} : ${measurements}`)
                 setIngredientsArray(tempArray);
+                //code below doesn't work for some reason
                 // setIngredientsArray(...ingredientsArray, `${ingredients} : ${measurements}`)
             }
         }

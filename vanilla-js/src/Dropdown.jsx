@@ -14,27 +14,27 @@ import { Submenu } from './Submenu';
 export const Dropdown = () => {
 
     const [categorySubMenu, setCategorySubMenu] = useState([]);
+    const [areaSubMenu, setAreaSubMenu] = useState([]);
 
     useEffect(() => {
         fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
             .then(res => res.json())
-            .then(data => console.log("categories", data))
+            .then(data => setCategorySubMenu(data.categories.map(category => category.strCategory)))
+        fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
+          .then(res => res.json())
+          .then(data => setAreaSubMenu(data.meals.map((meal) => meal.strArea)))
     }, [])
 
     const headerMenuItems = [
         {
             title: 'Category',
             url: '',
-            subMenu: ['x', 'x', 'y'
-
-            ]
+            subMenu: categorySubMenu
         },
         {
             title: 'Area',
             url: '',
-            subMenu: ['m', 'e', 't'
-
-            ]
+            subMenu: areaSubMenu
         }
 
     ]
@@ -87,11 +87,21 @@ export const Dropdown = () => {
 //             <div
 //                 tabIndex={0}
 //                 className="dd-header"
-//                 role="button"
-//                 onKeyPress={() => toggle(!open)}
-//                 onCLick={() => toggle(!open)}>
+// //                 role="button"
+// //                 onKeyPress={() => toggle(!open)}
+// //                 onCLick={() => toggle(!open)}>
 
-//             </div>
-//             </div>
-//     );
-// }
+//                 <div className="dd-header_title">
+//                     <p className="dd-header_title--bold>"{title}</p>
+// //             </div>
+// //             </div>
+// {open && (
+//     <ul className="dd-list">
+//         {items.map(item => (
+//             <li className="dd-list-item" key={item.id}>
+//                 <button type="button" onClick={() => handleOnClick(item)}>
+//         ))}
+//         ()
+// )}
+// //     );
+// // }

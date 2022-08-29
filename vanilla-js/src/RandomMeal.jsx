@@ -10,11 +10,7 @@ const StyledCard = styled.div`
 display: flex;
 width: 100vh;
 justify-content: center;
-background-color: #fffff0;
-border-radius: 15px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-margin: 40px 0;
-padding: 60px
+
 cursor: pointer;
 
 img{
@@ -24,15 +20,22 @@ border: 10px solid black;
 }
 `
 const Container = styled.div`
-width: 1000px;
+width: 100%;
 max-width: 100%;
 padding: 0 10px;
 margin: 0 auto;
+background-image: url("https://i.pinimg.com/originals/22/a5/a7/22a5a7b9dbc0e29ccef006dea5981367.png");
+background-size: cover;
+
 `
+
 const Flex = styled.div`
 display: flex;
+flex-direction: column;
 align-items: center;
 text-align: center;
+text-transform-value: Capitalize;
+font-size: 40px;
 
 & > div,
 & >ul {
@@ -62,11 +65,12 @@ export const RandomMeal = () => {
     return (
         <Container>
             <Flex>
+            <h2>{randomMeal.strMeal}</h2>
         <StyledCard onClick={() => {
                 setIndividualMealDetails(randomMeal);
                 navigate(`/details/${randomMeal.idMeal}`)}
             }>
-                <h2>{randomMeal.strMeal}</h2>
+                
                 <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
         </StyledCard>
             </Flex>

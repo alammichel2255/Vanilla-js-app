@@ -16,18 +16,41 @@ export const SearchResults = () => {
     const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText } = useContext(MealContext);
     const navigate = useNavigate();
     const { query } = useParams();
+    const [ingredientsArray, setIngredientsArray] = useState([])
 
     // fetches per a search for meal name
     useEffect(() => {
-        console.log("search useEffect did run")
+        // console.log("search useEffect did run")
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
             .then(res => res.json())
             .then(data => {
-                console.log('meal search:', data)
-                data.meals ? setMealArray(data.meals) : navigate('/error');
+                // console.log('meal search:', data)
+                if(data.meals.length !== 1){
+                    data.meals ? setMealArray(data.meals) : navigate('/error'); 
+                }
+                else{
+                    navigate(`/details/${data.meals[0].idMeal}`)
+                }
+                          
             })
     }, [mealSearchText])
 
+    useEffect(() => {
+        setIngredientsArray([]);
+        for(let i = 1; i <= 20; i++){
+            if(individualMealDetails[`strIngredient${i}`]){
+                const ingredients = individualMealDetails[`strIngredient${i}`]
+                console.log("ingredients - searchResults: ", ingredients);
+                const measurements = individualMealDetails[`strMeasure${i}`];
+                const tempArray = ingredientsArray;
+                tempArray.push(`${ingredients} : ${measurements}`)
+                setIngredientsArray(tempArray);
+                //code below doesn't work for some reason
+                // setIngredientsArray(...ingredientsArray, `${ingredients} : ${measurements}`)
+            }
+        }
+    }, [individualMealDetails])
+    
 
     return (
         <>
@@ -36,7 +59,7 @@ export const SearchResults = () => {
                 {mealArray.map(meal => {
                     return (
                         <div onClick={() => {
-                            setIndividualMealDetails(meal);
+                            // setIndividualMealDetails(meal);
                             navigate(`/details/${meal.idMeal}`)
                         }
                         }>
@@ -44,9 +67,12 @@ export const SearchResults = () => {
                             <div>{meal.strMeal}</div>
                             <img src={meal.strMealThumb} alt={meal.strMeal} />
                             <ul>
-
+                            {setIndividualMealDetails(meal)}    
+                            {ingredientsArray.map((ingredient) => 
+                                <li>{ingredient}</li>
+                             )}
                                 {/* FROM IAN: WE'LL NEED TO FIGURE OUT A WAY TO HANDLE EMPTY STRINGS AND NULL VALUES HERE, BUT THE BASIC FUNCTIONALITY IS THERE */}
-                                <li>{meal.strIngredient1}: {meal.strMeasure1}</li>
+                                {/* <li>{meal.strIngredient1}: {meal.strMeasure1}</li>
                                 <li>{meal.strIngredient2}: {meal.strMeasure2}</li>
                                 <li>{meal.strIngredient3}: {meal.strMeasure3}</li>
                                 <li>{meal.strIngredient4}: {meal.strMeasure4}</li>
@@ -65,7 +91,7 @@ export const SearchResults = () => {
                                 <li>{meal.strIngredient17}: {meal.strMeasure17}</li>
                                 <li>{meal.strIngredient18}: {meal.strMeasure18}</li>
                                 <li>{meal.strIngredient19}: {meal.strMeasure19}</li>
-                                <li>{meal.strIngredient20}: {meal.strMeasure20}</li>
+                                <li>{meal.strIngredient20}: {meal.strMeasure20}</li> */}
                             </ul>
                         </div>
                     )

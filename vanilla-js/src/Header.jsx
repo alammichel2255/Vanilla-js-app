@@ -11,18 +11,16 @@ import { Dropdown } from "./Dropdown";
 
 
 const StyledHeader = styled.header`
-  background-color: #e0ffff;
+  background-color: #c0c0c0;
   padding: 10px 0;
-  &:hover {
-    background-color: #fafad2;
-    cursor: pointer;
-  }
+ 
   `
   const Container = styled.div`
   width: 1000px;
   max-width: 100%;
   padding: 0 10px;
   margin: 0 auto;
+  
   `
   const Nav = styled.nav`
   display: flex;
@@ -39,8 +37,8 @@ cursor: pointer;
 font-size: 16px
 font-weight: 700;
 padding: 15px 60px;
-background-color: white;
-color: black;
+background-color: black;
+color: white;
 &:hover {
   opacity: 0.8;
   transform: scale (0.98);
@@ -55,7 +53,7 @@ const Flex = styled.div`
 display: flex;
 align-items: center;
 text-align: center;
-
+color: black;
 & > div,
 & >ul {
   flex: 1;
@@ -64,6 +62,11 @@ text-align: center;
 const Image = styled.img`
 width: 350px;
 margin-left: 40px;
+`
+const Label = styled.input`
+width: 100%;
+max-width: 300px;
+& >
 `
 
 
@@ -92,7 +95,10 @@ export const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setMealSearchText(searchText);
-    navigate(`/searchResults/${searchText}`);
+    if(searchText){
+      navigate(`/searchResults/${searchText}`);
+    }
+
   }
   return (
 
@@ -102,7 +108,7 @@ export const Header = () => {
         <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} />
         <Button> Recipes </Button>
       
-      <Dropdown />
+      <Dropdown style={{color: 'white'}}/>
       
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />

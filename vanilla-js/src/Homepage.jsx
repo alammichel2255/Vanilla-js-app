@@ -6,7 +6,7 @@ import { Header } from './Header'
 import { RandomMeal } from './RandomMeal';
 
 const Container = styled.header`
-  width: 1000px;
+  
   max-width: 100%;
   padding: 0 10px;
   margin: 0 auto;
