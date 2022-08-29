@@ -2,9 +2,64 @@ import { MealContext } from "./MealContext";
 import React, { useState, useContext, useEffect } from "react";
 import VanillaJS from "./VanillaJS.png";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
-import Styled from "styled-components";
+import styled from "styled-components";
 import { SearchResults } from "./SearchResults";
 import { useParams } from "react-router";
+import Rogo from "./chef.png";
+
+const StyledCard = styled.div`
+display: flex;
+flex-direction: column;
+mid-width: 1496px;
+
+align-items: center;
+background-color: #f5f5f5;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+margin: 40px 0;
+padding: 60px;
+`
+const StyledDetailFooter = styled.div`
+width:90%;
+mid-width: 1496px;
+max-width: 1460px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+background-color: black;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+margin: 40px 0;
+padding: 60px;
+`
+const StyledDetailVideo = styled.div`
+width:90%;
+mid-width: 1496px;
+max-width: 1460px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+background-color: black;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+margin: 40px 0;
+padding: 60px;
+`
+const Image = styled.img`
+width: 450px;
+margin-left: 40px;
+border: 10px solid black;
+&:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transform: scale (0.98);
+`
+const Logo = styled.img`
+width: 400px;
+
+`
 
 export const MealDetails = () => {
     // const { individualMealDetails, setIndividualMealDetails } = useContext(MealContext);
@@ -59,13 +114,19 @@ export const MealDetails = () => {
     // if (strValue === "")
 
     return (
-        <div><h1>Meal Detail Page</h1>
-            <h1>{currentMeal.strMeal}</h1>
-            <h3>{currentMeal.strCategory}</h3>
-            <img src={currentMeal.strMealThumb} />
+    <StyledCard>
+        <div>
+            <h1>Meal Detail Page</h1>
+            <h3>Catergory "{currentMeal.strCategory}"</h3>
+            <h4>{currentMeal.strMeal}</h4>
+        </div>
+        <StyledDetailFooter>
+                <div>
+                   <Image src={currentMeal.strMealThumb} alt= {currentMeal}/>
+               </div>
             <ul>
                 {ingredientsArray.map((ingredient) => 
-                    <li>{ingredient}</li>
+                    <h5>{ingredient}</h5>
                 )}
                 
                     
@@ -91,10 +152,14 @@ export const MealDetails = () => {
                 <li>{currentMeal.strIngredient19}: {currentMeal.strMeasure19}</li>
                 <li>{currentMeal.strIngredient20}: {currentMeal.strMeasure20}</li> */}
             </ul>
+            <Logo src= {Rogo}/>
+            </StyledDetailFooter>
+            <StyledDetailVideo>
             <p>{currentMeal.strInstructions}</p>
 
             <iframe width="640" height="360" src={youtubeEmbedLink} title={currentMeal.strMeal} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+            </StyledDetailVideo>
+        </StyledCard>
     )
 }
 
