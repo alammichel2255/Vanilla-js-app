@@ -10,9 +10,9 @@ export const Homepage = () => {
     const {randomMeal, setRandomMeal} = useContext(MealContext);
 
     return (
-        <>
+        <div style={{display: 'flex'}}>
             <h1>Homepage</h1>
             <RandomMeal />
-        </>
+        </div>
     )
 }

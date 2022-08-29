@@ -29,12 +29,12 @@ export const RandomMeal = () => {
     return (
         <>
             {/* <Link to={`/details/${randomMeal.id}`}> */}
-            <div onClick={() => {
+            <div style={{cursor: 'pointer'}} onClick={() => {
                 setIndividualMealDetails(randomMeal);
                 navigate(`/details/${randomMeal.idMeal}`)}
             }>
                 <h1>{randomMeal.strMeal}</h1>
-                <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
+                <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} style={{paddingLeft:'center', width: '520px', paddingLeft:'43%', paddingTop:'18%'}} />
                 {/* <video width="640" height="480" src='https://www.youtube.com/watch?v=IqXEZUk4hWI' controls>XXDRVRV </video> */}
             </div>
 

@@ -11,9 +11,28 @@ const MealDiv = styled.div`
     background-color: green;
 `
 
+
 export const SearchResults = () => {
-    const { mealArray, setMealArray, indivualMealDetails, setIndividualMealDetails} = useContext(MealContext);
+    const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails} = useContext(MealContext);
     const navigate = useNavigate();
+    const [ingredientsArray, setIngredientsArray] = useState([])
+    
+   
+    useEffect(() => {
+        setIngredientsArray([]);
+        for(let i = 1; i <= 20; i++){
+            if(individualMealDetails[`strIngredient${i}`]){
+                const ingredients = individualMealDetails[`strIngredient${i}`]
+                console.log("ingredients", ingredients);
+                const measurements = individualMealDetails[`strMeasure${i}`];
+                const tempArray = ingredientsArray;
+                tempArray.push(`${ingredients} : ${measurements}`)
+                setIngredientsArray(tempArray);
+                // setIngredientsArray(...ingredientsArray, `${ingredients} : ${measurements}`)
+            }
+        }
+    }, [individualMealDetails])
+
 
     return (
         <>
@@ -29,8 +48,13 @@ export const SearchResults = () => {
                             <div>{meal.strMeal}</div>
                             <img src={meal.strMealThumb} alt={meal.strMeal} />
                             <ul>
+                                    {ingredientsArray.map((ingredient) => 
+                                         <li>{ingredient}</li>
+                                    )}
+
+
                                 {/* FROM IAN: WE'LL NEED TO FIGURE OUT A WAY TO HANDLE EMPTY STRINGS AND NULL VALUES HERE, BUT THE BASIC FUNCTIONALITY IS THERE */}
-                                <li>{meal.strIngredient1}: {meal.strMeasure1}</li>
+                                {/* <li>{meal.strIngredient1}: {meal.strMeasure1}</li>
                                 <li>{meal.strIngredient2}: {meal.strMeasure2}</li>
                                 <li>{meal.strIngredient3}: {meal.strMeasure3}</li>
                                 <li>{meal.strIngredient4}: {meal.strMeasure4}</li>
@@ -49,7 +73,7 @@ export const SearchResults = () => {
                                 <li>{meal.strIngredient17}: {meal.strMeasure17}</li>
                                 <li>{meal.strIngredient18}: {meal.strMeasure18}</li>
                                 <li>{meal.strIngredient19}: {meal.strMeasure19}</li>
-                                <li>{meal.strIngredient20}: {meal.strMeasure20}</li>
+                                <li>{meal.strIngredient20}: {meal.strMeasure20}</li> */}
                             </ul>
                         </div>
                     )

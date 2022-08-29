@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link, } from 'react-router-dom'
-import Styled from 'styled-components'
+import styled from 'styled-components'
 import { MealContext } from './MealContext';
 import { Header } from './Header'
 import { Homepage } from './Homepage'
@@ -50,6 +50,7 @@ function App() {
     <MealContext.Provider value={passContext}>
 
       <Router>
+        
         <Header />
         <Routes>
 
@@ -57,14 +58,9 @@ function App() {
           <Route path='/error' element={<ErrorLanding />} />
           <Route path='/details/:id' element={<MealDetails />} />
           <Route path='/searchResults' element={<SearchResults />} />
+        
         </Routes>
       </Router>
-      <div className="App">
-
-        Vanilla JS
-
-      </div>
-
     </MealContext.Provider>
 
   );
