@@ -23,7 +23,10 @@ function App() {
   //
   const [randomMeal, setRandomMeal] = useState({});
 
-  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal };
+  // IAN, 29AUG: ATTEMPT AT CREATING A SEARCH BASED ON MEAL CATEGORY
+  const [catMealArray, setCatMealArray] = ([])
+
+  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal, catMealArray, setCatMealArray };
 
   // on loading, picks a random meal to display
   useEffect(() =>{  

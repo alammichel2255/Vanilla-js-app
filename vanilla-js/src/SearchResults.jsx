@@ -24,7 +24,7 @@ pad
 
 
 export const SearchResults = () => {
-    const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText } = useContext(MealContext);
+    const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText, catMealArray, setCatMealArray } = useContext(MealContext);
     const navigate = useNavigate();
     const { query } = useParams();
     const [ingredientsArray, setIngredientsArray] = useState([])
@@ -42,9 +42,13 @@ export const SearchResults = () => {
                 else{
                     navigate(`/details/${data.meals[0].idMeal}`)
                 }
-                          
             })
     }, [mealSearchText])
+
+    useEffect(() =>{
+        console.log('app catmealarray: ', catMealArray)
+        // setMealArray(catMealArray)
+    }, [catMealArray])
 
     useEffect(() => {
         setIngredientsArray([]);

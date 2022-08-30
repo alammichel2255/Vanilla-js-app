@@ -78,22 +78,6 @@ export const Header = () => {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
-  // // fetches per a search for meal name
-  // useEffect(() => {
-  //   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       data.meals ? setMealArray(data) : navigate('/error');
-
-  //       console.log('meal search:', data)
-  //     })
-  // }, [mealSearchText])
-
-
-
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setMealSearchText(searchText);
@@ -131,6 +115,18 @@ export const Header = () => {
     </StyledHeader>
   )
 }
+
+
+  // // fetches per a search for meal name
+  // useEffect(() => {
+  //   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       data.meals ? setMealArray(data) : navigate('/error');
+
+  //       console.log('meal search:', data)
+  //     })
+  // }, [mealSearchText])
 
 
 ///////HTML DropDown/////////////
