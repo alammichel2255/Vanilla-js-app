@@ -13,7 +13,7 @@ flex-direction: column;
 mid-width: 1496px;
 
 align-items: center;
-background-color: #f5f5f5;
+background-color: white;
 border-radius: 15px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 margin: 40px 0;
@@ -27,7 +27,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-background-color: black;
+background-color: #f5f5f5;
 border-radius: 15px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 margin: 40px 0;
@@ -41,7 +41,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
-background-color: black;
+background-color: #f5f5f5;
 border-radius: 15px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 margin: 40px 0;
@@ -118,6 +118,7 @@ export const MealDetails = () => {
         <div>
             <h1>Meal Detail Page</h1>
             <h3>Catergory "{currentMeal.strCategory}"</h3>
+            <h3>Area "{currentMeal.strArea}"</h3>
             <h4>{currentMeal.strMeal}</h4>
         </div>
         <StyledDetailFooter>

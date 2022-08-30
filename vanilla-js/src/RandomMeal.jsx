@@ -66,6 +66,7 @@ export const RandomMeal = () => {
         <Container>
             <Flex>
             <h2>{randomMeal.strMeal} </h2>
+            
         <StyledCard onClick={() => {
                 setIndividualMealDetails(randomMeal);
                 navigate(`/details/${randomMeal.idMeal}`)}

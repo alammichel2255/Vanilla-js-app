@@ -10,9 +10,21 @@ import { useParams } from "react-router";
 
 const StyledCard = styled.div`
 display: flex;
+flex-direction: row;
+mid-width: 1496px;
+flex-wrap: wrap;
+justify-content: space-between;
+background-color: #f5f5f5;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+margin: 40px 0;
+pad
+`
+const StyledCardInfo = styled.div`
+display: flex;
 flex-direction: column;
 mid-width: 1496px;
-
+justify-content: space-evenly;
 align-items: center;
 background-color: #f5f5f5;
 border-radius: 15px;
@@ -21,35 +33,44 @@ margin: 40px 0;
 pad
 `
 
+const Container = styled.div`
+width: 1000px;
+max-width: 100%;
+padding: 0 10px;
+margin: 0 auto;
+
+`
+
 
 
 export const SearchResults = () => {
     const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText, catMealArray, setCatMealArray } = useContext(MealContext);
     const navigate = useNavigate();
     const { query } = useParams();
-    const [ingredientsArray, setIngredientsArray] = useState([])
+    // const [ingredientsArray, setIngredientsArray] = useState([])
 
     // fetches per a search for meal name
     useEffect(() => {
         
        let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
-    //    console.log('query 0', query[0], 'query 1', query[1])
-    //     if(query[1]==="="){
-    //         // let newQuery = query.slice(1);
+       console.log('query 0', query[0], 'query 1', query[1])
+        if(query[1]==="="){
+            // let newQuery = query.slice(1);
 
-    //         url = `https://www.themealdb.com/api/json/v1/1/filter.php?${query[0]}=${query.slice(2)}`
-    //     }
+            url = `https://www.themealdb.com/api/json/v1/1/filter.php?${query[0]}=${query.slice(2)}`
+        }
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 // console.log('meal search:', data)
                 console.log("url ", url)
-                if(data.meals.length !== 1){
-                    data.meals ? setMealArray(data.meals) : navigate('/error'); 
-                }
-                else{
-                    navigate(`/details/${data.meals[0].idMeal}`)
-                }
+                data.meals ? (
+                    data.meals.length !== 1 ? (
+                    setMealArray(data.meals) 
+                    ):(
+                        navigate(`/details/${data.meals[0].idMeal}`)
+                    )
+                    ): navigate('/error'); 
             })
     }, [mealSearchText])
 
@@ -58,38 +79,39 @@ export const SearchResults = () => {
         // setMealArray(catMealArray)
     }, [catMealArray])
 
-    useEffect(() => {
-        setIngredientsArray([]);
-        for(let i = 1; i <= 20; i++){
-            if(individualMealDetails[`strIngredient${i}`]){
-                const ingredients = individualMealDetails[`strIngredient${i}`]
-                console.log("ingredients - searchResults: ", ingredients);
-                const measurements = individualMealDetails[`strMeasure${i}`];
-                const tempArray = ingredientsArray;
-                tempArray.push(`${ingredients} : ${measurements}`)
-                setIngredientsArray(tempArray);
-                //code below doesn't work for some reason
-                // setIngredientsArray(...ingredientsArray, `${ingredients} : ${measurements}`)
-            }
-        }
-    }, [individualMealDetails])
+    // useEffect(() => {
+    //     setIngredientsArray([]);
+    //     for(let i = 1; i <= 20; i++){
+    //         if(individualMealDetails[`strIngredient${i}`]){
+    //             const ingredients = individualMealDetails[`strIngredient${i}`]
+    //             console.log("ingredients - searchResults: ", ingredients);
+    //             const measurements = individualMealDetails[`strMeasure${i}`];
+    //             const tempArray = ingredientsArray;
+    //             tempArray.push(`${ingredients} : ${measurements}`)
+    //             setIngredientsArray(tempArray);
+    //             //code below doesn't work for some reason
+    //             // setIngredientsArray(...ingredientsArray, `${ingredients} : ${measurements}`)
+    //         }
+    //     }
+    // }, [individualMealDetails])
     
 
     return (
-        <>
-            <div>SearchResult!</div>
+        <StyledCard>
+            
             <>
                 {mealArray.map(meal => {
                     return (
-                        <div onClick={() => {
+                        <StyledCardInfo onClick={() => {
                             // setIndividualMealDetails(meal);
                             navigate(`/details/${meal.idMeal}`)
                         }
                         }>
-
-                            <div>{meal.strMeal}</div>
+                              
+                            <h6>{meal.strMeal}</h6>
                             <img src={meal.strMealThumb} alt={meal.strMeal} />
-                            <ul>
+                            
+                            {/* <ul>
                             {setIndividualMealDetails(meal)}    
                             {ingredientsArray.map((ingredient) => 
                                 <li>{ingredient}</li>
@@ -115,11 +137,11 @@ export const SearchResults = () => {
                                 <li>{meal.strIngredient18}: {meal.strMeasure18}</li>
                                 <li>{meal.strIngredient19}: {meal.strMeasure19}</li>
                                 <li>{meal.strIngredient20}: {meal.strMeasure20}</li> */}
-                            </ul>
-                        </div>
+                            {/* </ul> */}
+                        </StyledCardInfo>
                     )
                 })}
             </>
-        </>
+        </StyledCard>
     )
 }

@@ -12,14 +12,14 @@ h1 {
 p {
   font-family: 'Kanit';
   font-size: 1.5rem;
-  color: rgb(255, 255, 255);
+  color: black;
   text-align: center;
   margin-top: 1rem;
 }
 
 h2 {
   font-family: 'Kanit';
-  font-size: 60px;
+  font-size: 55px;
   font-weight: 700;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -48,21 +48,23 @@ h5 {
   font-family: 'Kanit';
   font-size: 15px;
   font-weight: 700;
-  color: rgb(250, 248, 248);
+  color: rgb(0, 0, 0);
   text-align: center;
   margin-top: 0.5rem;
   text-transform: capitalize;
 }
 
-p {
+h6 {
   font-family: 'Kanit';
-  font-size: 20px;
+  font-size: 50px;
   font-weight: 700;
-  color: rgb(250, 248, 248);
+  color: rgb(0, 0, 0);
   text-align: center;
   margin-top: 0.5rem;
   text-transform: capitalize;
-  word-spacing: 0.5rem;
 }
+
+
+
 
 

@@ -8,7 +8,9 @@ import styled from "styled-components";
 import { SearchResults } from "./SearchResults";
 import { ErrorLanding } from "./ErrorLanding";
 import { Dropdown } from "./Dropdown";
-
+import { Submenu } from './Submenu';
+import { CatDropdown } from "./CatDropdown";
+import { AreaDropdown } from './AreaDropdown';
 
 
 const StyledHeader = styled.header`
@@ -16,14 +18,14 @@ const StyledHeader = styled.header`
   padding: 10px 0;
  
   `
-  const Container = styled.div`
+const Container = styled.div`
   width: 1000px;
   max-width: 100%;
   padding: 0 10px;
   margin: 0 auto;
   
   `
-  const Nav = styled.nav`
+const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,6 +71,23 @@ border: 10px solid black;
   opacity: 0.8;
   transform: scale (0.98);
 `
+const SubmenuStyle = styled.div`
+border-radius: 50px;
+border: none;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+cursor: pointer;
+font-size: 16px
+font-weight: 700;
+padding: 15px 60px;
+background-color: grey;
+color: white;
+&:hover {
+  opacity: 0.8;
+  transform: scale (0.98);
+  font-type: poppins;
+}
+
+`
 
 
 
@@ -78,10 +97,38 @@ export const Header = () => {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
+  const [categorySubMenu, setCategorySubMenu] = useState([]);
+  const [areaSubMenu, setAreaSubMenu] = useState([]);
+
+  useEffect(() => {
+    fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+      .then(res => res.json())
+      .then(data => setCategorySubMenu(data.categories.map(category => category.strCategory)))
+    fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
+      .then(res => res.json())
+      .then(data => setAreaSubMenu(data.meals.map((meal) => meal.strArea)))
+  }, [])
+
+  const CategoryMenuItems =
+  {
+    title: 'Category',
+    url: 'c',
+    subMenu: categorySubMenu
+  }
+
+  const AreaMenuItems =
+  {
+    title: 'Area',
+    url: 'a',
+    subMenu: areaSubMenu
+  }
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setMealSearchText(searchText);
-    if(searchText){
+    if (searchText) {
       navigate(`/searchResults/${searchText}`);
     }
 
@@ -91,26 +138,34 @@ export const Header = () => {
     <StyledHeader>
       <Container>
         <Nav>
-        <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} />
-        <Button> Recipes </Button>
-      
-      <Dropdown style={{color: 'white'}}/>
-      
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
-          <input type="submit" />
-        </form>
+          <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} />
+          <Button> Recipes </Button>
+          <Button> Favorites </Button>
+          {/* <SubmenuStyle> */}
+            <CatDropdown />
+            {/* <Button> Categories </Button>
+            <Submenu sub={CategoryMenuItems} /> */}
+           
+          {/* </SubmenuStyle> */}
+          <AreaDropdown />
+          {/* <Button> Areas <Submenu sub={AreaMenuItems} /></Button> */}
+
+
+          <Dropdown style={{ color: 'white' }} />
+
+          <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+            <input type="submit" />
+          </form>
         </Nav>
         <Flex>
-        <div style={{marginLeft:'-25%'}}>
-          <h1>Vanilla JS Restaurant</h1>
-          <p> We are changing the way you eat! The choice is yours..</p>
-            <Button bg='#E8E47D' color='white'>
-              Click Here For Random Recipe!
-            </Button>
-        </div>
-        <Image src={VanillaJS2} alt="VanillaJS2"/>
-          </Flex>
+          <div style={{ marginLeft: '-25%' }}>
+            <h1>Vanilla JS Restaurant</h1>
+            <p> We are changing the way you eat! The choice is yours..</p>
+            
+          </div>
+          <Image src={VanillaJS2} alt="VanillaJS2" />
+        </Flex>
       </Container>
     </StyledHeader>
   )

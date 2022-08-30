@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link, } from 'react-router-dom'
-import Styled from 'styled-components'
+import styled from 'styled-components'
 import { MealContext } from './MealContext';
 import { Header } from './Header'
 import { Homepage } from './Homepage'
@@ -11,51 +11,75 @@ import { ErrorLanding } from './ErrorLanding';
 import { HeaderMenuItems } from './HeaderMenuItems';
 import { Submenu } from './Submenu';
 
+
+const Flex = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+text-align: center;
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
+
+
+const Button = styled.button`
+border-radius: 50px;
+border: none;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+cursor: pointer;
+font-size: 16px
+font-weight: 700;
+padding: 15px 60px;
+background-color: black;
+color: white;
+&:hover {
+  opacity: 0.8;
+  transform: scale (0.98);
+  font-type: poppins;
+`
+
 export const Dropdown = () => {
 
-    const [categorySubMenu, setCategorySubMenu] = useState([]);
-    const [areaSubMenu, setAreaSubMenu] = useState([]);
+    // const [categorySubMenu, setCategorySubMenu] = useState([]);
+    // const [areaSubMenu, setAreaSubMenu] = useState([]);
 
-    useEffect(() => {
-        fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-            .then(res => res.json())
-            .then(data => setCategorySubMenu(data.categories.map(category => category.strCategory)))
-        fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
-          .then(res => res.json())
-          .then(data => setAreaSubMenu(data.meals.map((meal) => meal.strArea)))
-    }, [])
+    // useEffect(() => {
+    //     fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+    //         .then(res => res.json())
+    //         .then(data => setCategorySubMenu(data.categories.map(category => category.strCategory)))
+    //     fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
+    //       .then(res => res.json())
+    //       .then(data => setAreaSubMenu(data.meals.map((meal) => meal.strArea)))
+    // }, [])
 
-    const headerMenuItems = [
-        {
-            title: 'Category',
-            url: '',
-            subMenu: categorySubMenu
-        },
-        {
-            title: 'Area',
-            url: '',
-            subMenu: areaSubMenu
-        }
+    // const headerMenuItems = [
+    //     {
+    //         title: 'Category',
+    //         url: 'c',
+    //         subMenu: categorySubMenu
+    //     },
+    //     {
+    //         title: 'Area',
+    //         url: 'a',
+    //         subMenu: areaSubMenu
+    //     }
 
-    ]
+    // ]
 
-    console.log(headerMenuItems);
+    // console.log(headerMenuItems);
     return (
-        <ul className="Dropdown">
-            {headerMenuItems.map((item) => (
-                <div>
-                    {item.title}
-                    <Submenu sub={item.subMenu} />
-                    {/* <ul>
-                        {item.subMenu.map((subMenuItem) => (
-                            // <li>{subMenuItem}</li>
-                            <Submenu/>
-                        ))}
-                    </ul> */}
+        <div className="Dropdown">
+            {/* {headerMenuItems.map((item) => (
+                <Flex>
+                    <Button>{item.title}</Button>
+                    <Submenu sub={item} />
+                  
 
-                </div>
-            ))}
-        </ul>
+                </Flex>
+            ))} */}
+        </div>
     );
 
 

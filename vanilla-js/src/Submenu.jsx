@@ -13,31 +13,31 @@ export const Submenu = ({ sub }) => {
     const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText, catMealArray, setCatMealArray, setMealSearchText } = useContext(MealContext);
 
     const handleClick = (item) => {
-        // setMealSearchText(item);
-        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${item}`)
-            .then(res => res.json())
-            .then(data => setTempMealCatArr(data.meals))
+        setMealSearchText(item);
+        // fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${item}`)
+        //     .then(res => res.json())
+        //     .then(data => setTempMealCatArr(data.meals))
     }
 
-    useEffect(() => {
-        const categoryMealPromises = tempMealCatArr.map(catMeal =>
-            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${catMeal.idMeal}`)
-                .then(res => res.json())
-                .then(data => data.meals))
-        Promise.all(categoryMealPromises)
-            .then(data => console.log('meal promises:', data))
-    }, [tempMealCatArr])
+    // useEffect(() => {
+    //     const categoryMealPromises = tempMealCatArr.map(catMeal =>
+    //         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${catMeal.idMeal}`)
+    //             .then(res => res.json())
+    //             .then(data => data.meals))
+    //     Promise.all(categoryMealPromises)
+    //         .then(data => console.log('meal promises:', data))
+    // }, [tempMealCatArr])
 
     return (
         // <li>thing</li>
         <ul>
-            {sub.map(item => {
+            {sub.subMenu.map(item => {
                 return (
                     <div onClick={() => { 
                         handleClick(item);
-                        navigate(`/searchResults/${item}`)
+                        // navigate(`/searchResults/${item}`)
                         
-                        // navigate(`/searchResults/a=${item}`)
+                        navigate(`/searchResults/${sub.url}=${item}`)
                     }}>{item}</div>
 
                 )
