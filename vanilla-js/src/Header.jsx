@@ -63,11 +63,7 @@ const Image = styled.img`
 width: 350px;
 margin-left: 40px;
 `
-const Label = styled.input`
-width: 100%;
-max-width: 300px;
-& >
-`
+
 
 
 export const Header = () => {
