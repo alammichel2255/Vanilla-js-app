@@ -1,3 +1,4 @@
+import './index.css';
 import { MealContext } from "./MealContext";
 import React, { useState, useContext, useEffect } from "react";
 import VanillaJS from "./VanillaJS.png";
@@ -62,6 +63,11 @@ color: black;
 const Image = styled.img`
 width: 350px;
 margin-left: 40px;
+border: 10px solid black;
+&:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transform: scale (0.98);
 `
 
 

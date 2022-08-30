@@ -8,7 +8,18 @@ import { RandomMeal } from './RandomMeal';
 import styled from 'styled-components';
 import { useParams } from "react-router";
 
+const StyledCard = styled.div`
+display: flex;
+flex-direction: column;
+mid-width: 1496px;
 
+align-items: center;
+background-color: #f5f5f5;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+margin: 40px 0;
+pad
+`
 
 
 
