@@ -120,7 +120,7 @@ export const SearchResults = () => {
                         }>
                               
                             <h6>{meal.strMeal}</h6>
-                            <img src={meal.strMealThumb} alt={meal.strMeal} />
+                            <img src={meal.strMealThumb} alt={meal.strMeal}  />
                             
                             {/* <ul>
                             {setIndividualMealDetails(meal)}    
