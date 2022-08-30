@@ -37,7 +37,7 @@ export const Submenu = ({ sub }) => {
                         handleClick(item);
                         navigate(`/searchResults/${item}`)
                         
-                        // navigate(`/searchResults/=${item}`)
+                        // navigate(`/searchResults/a=${item}`)
                     }}>{item}</div>
 
                 )

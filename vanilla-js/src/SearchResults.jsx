@@ -31,11 +31,14 @@ export const SearchResults = () => {
 
     // fetches per a search for meal name
     useEffect(() => {
+        
        let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
-        // if(query[0]==="="){
-        //     // let newQuery = query.slice(1);
-        //     url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${query.slice(1)}`
-        // }
+    //    console.log('query 0', query[0], 'query 1', query[1])
+    //     if(query[1]==="="){
+    //         // let newQuery = query.slice(1);
+
+    //         url = `https://www.themealdb.com/api/json/v1/1/filter.php?${query[0]}=${query.slice(2)}`
+    //     }
         fetch(url)
             .then(res => res.json())
             .then(data => {
