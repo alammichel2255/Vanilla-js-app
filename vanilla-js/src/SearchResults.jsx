@@ -13,7 +13,7 @@ display: flex;
 flex-direction: row;
 mid-width: 1496px;
 flex-wrap: wrap;
-justify-content: space-between;
+justify-content: center;
 background-color: #f5f5f5;
 border-radius: 15px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -52,12 +52,21 @@ export const SearchResults = () => {
     // fetches per a search for meal name
     useEffect(() => {
         
-       let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
+       let url = ''
        console.log('query 0', query[0], 'query 1', query[1])
-        if(query[1]==="="){
+        if(query[0]==="c" || query[0] === "a"){
             // let newQuery = query.slice(1);
 
             url = `https://www.themealdb.com/api/json/v1/1/filter.php?${query[0]}=${query.slice(2)}`
+        }
+        else if(query[0]==="s"){
+            url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${query.slice(2)}`
+        }
+        else if(query[0]==="r"){
+            url = `https://www.themealdb.com/api/json/v1/1/search.php?s=`
+            console.log("query r ran")
+        }else{
+            navigate('/error') 
         }
         fetch(url)
             .then(res => res.json())
@@ -74,10 +83,10 @@ export const SearchResults = () => {
             })
     }, [mealSearchText])
 
-    useEffect(() =>{
-        console.log('app catmealarray: ', catMealArray)
-        // setMealArray(catMealArray)
-    }, [catMealArray])
+    // useEffect(() =>{
+    //     console.log('app catmealarray: ', catMealArray)
+    //     // setMealArray(catMealArray)
+    // }, [catMealArray])
 
     // useEffect(() => {
     //     setIngredientsArray([]);
@@ -97,6 +106,8 @@ export const SearchResults = () => {
     
 
     return (
+        <>
+        <h3>Results: {mealArray.length}</h3>
         <StyledCard>
             
             <>
@@ -143,5 +154,6 @@ export const SearchResults = () => {
                 })}
             </>
         </StyledCard>
+        </>
     )
 }

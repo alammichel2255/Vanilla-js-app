@@ -8,6 +8,7 @@ import { RandomMeal } from './RandomMeal';
 import { SearchResults } from './SearchResults';
 import {MealDetails} from './MealDetails';
 import {ErrorLanding} from './ErrorLanding';
+import { Favorites } from './favorites'
 
 
 function App() {
@@ -26,7 +27,11 @@ function App() {
   // IAN, 29AUG: ATTEMPT AT CREATING A SEARCH BASED ON MEAL CATEGORY
   const [catMealArray, setCatMealArray] = ([])
 
-  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal, catMealArray, setCatMealArray };
+  const [tempFavArray, setTempFavArray] = useState([])
+
+  const [catSubmenuDisplay, setCatSubmenuDisplay] = useState('none');
+
+  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal, catMealArray, setCatMealArray, catSubmenuDisplay, setCatSubmenuDisplay, tempFavArray, setTempFavArray };
 
   // on loading, picks a random meal to display
   useEffect(() =>{  
@@ -59,6 +64,7 @@ function App() {
 
           <Route path='/' element={<Homepage />} />
           <Route path='/error' element={<ErrorLanding />} />
+          <Route path='/favorites' element={<Favorites />} />
           <Route path='/details/:id' element={<MealDetails />} />
           <Route path='/searchResults/:query' element={<SearchResults />} />
         

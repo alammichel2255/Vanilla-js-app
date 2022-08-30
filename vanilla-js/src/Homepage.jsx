@@ -7,6 +7,8 @@ import { RandomMeal } from './RandomMeal';
 
 const Container = styled.header`
   display: flex;
+  background-color: grey;
+  border: 3px solid black;
   flex-direction: column;
   justify-content: center;
   max-width: 100%;
@@ -45,7 +47,7 @@ const Container = styled.header`
 display: flex;
 align-items: center;
 text-align: center;
-padding-top: 35px;
+padding-top: 50px;
 color: black;
 & > div,
 & >ul {
@@ -65,7 +67,11 @@ export const Homepage = () => {
         <Container>
             <Flex>
           <Button bg='#E8E47D' color='white'>
-              <ButtonText>Give me another meal</ButtonText>
+              <ButtonText onClick={() => fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+                .then(res => res.json())
+                .then(data => {
+                    setRandomMeal(data.meals[0])
+                })}>Give me another meal</ButtonText>
             </Button>
             </Flex>
 

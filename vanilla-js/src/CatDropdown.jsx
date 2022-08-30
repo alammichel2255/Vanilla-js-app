@@ -26,6 +26,34 @@ color: white;
   transform: scale (0.98);
   font-type: poppins;
 `
+const StyledHeader = styled.header`
+    display: flex;
+    justify-content: center;
+  background-color: black;
+  padding: 5px 0;
+  padding-bottom: px;
+  border: 3px solid black;
+  height: 50px;
+  width: 100%;
+ 
+  `
+  const Container = styled.div`
+  width: 1000px;
+  max-width: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+
+  
+  `
+  const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+  color: white;
+  
+  `
 
 const SubmenuStyle = styled.div`
 border-radius: 50px;
@@ -45,6 +73,9 @@ color: white;
 `
 
 export const CatDropdown = () => {
+
+    const { mealSearchText, setMealSearchText, mealArray, setMealArray, catSubmenuDisplay, setCatSubmenuDisplay } = useContext(MealContext);
+
     const [categorySubMenu, setCategorySubMenu] = useState([]);
     const [display, setDisplay] = useState('none')
 
@@ -78,14 +109,16 @@ export const CatDropdown = () => {
     // }
 
     return (
-        <div>
-            <Button onClick={() => handleClick()}>
-                Category
-            </Button>
-            <SubmenuStyle style={{display:display}}>
-                <Submenu sub={CategoryMenuItems} />
-            </SubmenuStyle>
-        </div>
+        <StyledHeader onClick={() => handleClick()}>
+        <h3 style={{color:'white'}}>Category</h3>
+
+        <SubmenuStyle style={{display:display}}>
+        <Submenu sub={CategoryMenuItems} />
+        </SubmenuStyle>
+            
+     
+       
+         </StyledHeader>
     )
 
 }

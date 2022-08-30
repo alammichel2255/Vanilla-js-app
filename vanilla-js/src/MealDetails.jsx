@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { SearchResults } from "./SearchResults";
 import { useParams } from "react-router";
 import Rogo from "./chef.png";
+import { Widget } from "./Widget";
 
 const StyledCard = styled.div`
 display: flex;
@@ -62,7 +63,7 @@ width: 400px;
 `
 
 export const MealDetails = () => {
-    // const { individualMealDetails, setIndividualMealDetails } = useContext(MealContext);
+    const { tempFavArray, setTempFavArray } = useContext(MealContext);
 
     const [currentMeal, setCurrentMeal] = useState({});
     const [youtubeEmbedLink, setYoutubeEmbedLink] = useState('')
@@ -97,23 +98,8 @@ export const MealDetails = () => {
         }
     }, [currentMeal])
 
-    // useEffect(() => {
-    //     console.log("ingredientsArray", ingredientsArray);
-    // }, [ingredientsArray])
-    
-                //   exampleArr.map(item => <li>{item}</ll>)
-                //     for(let i = 1; i <= 20; i++ ){
-                //       return (
-                //           //exampleArr.push(`${currentMeal.strIngredient1} : ${currentMeal.strMeasurment1}`)
-                //           <li>{`currentMeal.strIngredient${i}`}: {`currentMeal.strMeasure${i}`}</li>
-                //       )
-                //   }
-
-              
-    
-    // if (strValue === "")
-
     return (
+        <>
     <StyledCard>
         <div>
             <h1>Meal Detail Page</h1>
@@ -129,10 +115,41 @@ export const MealDetails = () => {
                 {ingredientsArray.map((ingredient) => 
                     <h5>{ingredient}</h5>
                 )}
-                
-                    
-                
-                {/* <li>{currentMeal.strIngredient1}: {currentMeal.strMeasure1}</li>
+            </ul>
+            <Logo src= {Rogo}/>
+            
+            </StyledDetailFooter>
+            <StyledDetailVideo>
+            <p>{currentMeal.strInstructions}</p>
+
+            <iframe width="640" height="360" src={youtubeEmbedLink} title={currentMeal.strMeal} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </StyledDetailVideo>
+        </StyledCard>
+
+
+            <button onClick={() => {
+                // console.log("current temp fav array value", tempFavArray)
+                // const tempArray = tempFavArray;
+                // tempArray.push(currentMeal);
+                // setTempFavArray(tempArray);
+                // console.log("current meal", currentMeal)
+
+                setTempFavArray(current => [...current, currentMeal.strMeal])
+                console.log("local storage test");
+                // localStorage.setItem("test", currentMeal.strMeal);
+                }}>Favorites Test Button</button>    
+        </>
+    )
+}
+
+
+
+
+
+
+
+
+               {/* <li>{currentMeal.strIngredient1}: {currentMeal.strMeasure1}</li>
                 <li>{currentMeal.strIngredient2}: {currentMeal.strMeasure2}</li>
                 <li>{currentMeal.strIngredient3}: {currentMeal.strMeasure3}</li>
                 <li>{currentMeal.strIngredient4}: {currentMeal.strMeasure4}</li>
@@ -152,24 +169,3 @@ export const MealDetails = () => {
                 <li>{currentMeal.strIngredient18}: {currentMeal.strMeasure18}</li>
                 <li>{currentMeal.strIngredient19}: {currentMeal.strMeasure19}</li>
                 <li>{currentMeal.strIngredient20}: {currentMeal.strMeasure20}</li> */}
-            </ul>
-            <Logo src= {Rogo}/>
-            </StyledDetailFooter>
-            <StyledDetailVideo>
-            <p>{currentMeal.strInstructions}</p>
-
-            <iframe width="640" height="360" src={youtubeEmbedLink} title={currentMeal.strMeal} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </StyledDetailVideo>
-        </StyledCard>
-    )
-}
-
-{/* FROM IAN: TRYING TO IMPLEMENT A SIMPLE UNIT CONVERTER. THIS IS DEFINITELY A STRETCH GOAL */}
-
-            {/* https://www.theunitconverter.com/unit-conversion-widget.html#:~:text=Entry%20the%20required%20value%2C%20it%20will%20get%20the,into%20the%20desired%20position%20in%20your%20websites%20code. */}
-
-            {/* <!-- Unit Conversion Script - TheUnitConverter.com /--> */}
-            
-            {/* <div style="width:238px;margin:0px auto;"><div style="width:99.5%;border:1px solid #2D6AB4;border-top:none;border-bottom:none;text-align:center; height:35px;font-size:16px;padding:5px 0px 0px 0px;border-top-right-radius:5px; border-top-left-radius:5px;background-color:#2D6AB4; font-weight:bold;"><a href="https://www.theunitconverter.com/volume-conversion/" style="text-decoration:none;color:#FFFFFF;" rel="nofollow">Conversion Widget</a></div><script type="text/javascript" src="https://ww.theunitconverter.com/converter.php?l=en&c=0&a=FFFFFF&b=2D6AB4&s=volume"></script></div> */}
-            
-            {/* <!-- End of Unit Conversion Script --> */}

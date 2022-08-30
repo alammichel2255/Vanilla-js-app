@@ -80,9 +80,9 @@ export const AreaDropdown = () => {
 
     return (
         <div>
-            <Button onClick={handleClick}>
+            <div onClick={handleClick}>
                 Area
-            </Button>
+            </div>
             <SubmenuStyle style={{display:display}}>
                 <Submenu sub={AreaMenuItems} />
             </SubmenuStyle>
@@ -90,3 +90,5 @@ export const AreaDropdown = () => {
     )
 
 }
+
+

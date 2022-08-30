@@ -1,4 +1,5 @@
 import './index.css';
+// import './header.scss';
 import { MealContext } from "./MealContext";
 import React, { useState, useContext, useEffect } from "react";
 import VanillaJS from "./VanillaJS.png";
@@ -14,22 +15,31 @@ import { AreaDropdown } from './AreaDropdown';
 
 
 const StyledHeader = styled.header`
-  background-color: #c0c0c0;
-  padding: 10px 0;
+  background-color: grey;
+  padding: 5px 0;
+  padding-bottom: 5px;
+  border: 3px solid black;
+  height: 150px;
  
   `
+  const StyledHeader2 = styled.div`
+  background-color: white;
+  padding: 10px 0;
+  `
+
 const Container = styled.div`
   width: 1000px;
   max-width: 100%;
   padding: 0 10px;
   margin: 0 auto;
+
   
   `
 const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   
   `
 const Button = styled.button`
@@ -54,16 +64,33 @@ width: 200px;
 
 const Flex = styled.div`
 display: flex;
+padding-top: 20px;
+padding-bottom: 85px;
 align-items: center;
 text-align: center;
+justify-content: space-between;
 color: black;
 & > div,
 & >ul {
   flex: 1;
 }`
 
+const Flex2 = styled.div`
+display: flex;
+padding-top: 20px;
+padding-bottom: 40px;
+align-items: center;
+text-align: center;
+justify-content: space-between;
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
+
+
 const Image = styled.img`
-width: 350px;
+width: 450px;
 margin-left: 40px;
 border: 10px solid black;
 &:hover {
@@ -93,7 +120,7 @@ color: white;
 
 export const Header = () => {
 
-  const { mealSearchText, setMealSearchText, mealArray, setMealArray } = useContext(MealContext);
+  const { mealSearchText, setMealSearchText, mealArray, setMealArray, catSubmenuDisplay, setCatSubmenuDisplay } = useContext(MealContext);
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
@@ -123,51 +150,83 @@ export const Header = () => {
     subMenu: areaSubMenu
   }
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setMealSearchText(searchText);
     if (searchText) {
-      navigate(`/searchResults/${searchText}`);
+      navigate(`/searchResults/s=${searchText}`);
     }
 
   }
-  return (
 
-    <StyledHeader>
+  const handleCatButtonClick = () => {
+    if (catSubmenuDisplay == 'none') {
+      setCatSubmenuDisplay('block')
+  } else {
+      setCatSubmenuDisplay('none')
+  }
+  }
+
+  return (
+<>
+  <StyledHeader>
       <Container>
         <Nav>
           <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} />
-          <Button> Recipes </Button>
-          <Button> Favorites </Button>
-          {/* <SubmenuStyle> */}
-            <CatDropdown />
-            {/* <Button> Categories </Button>
-            <Submenu sub={CategoryMenuItems} /> */}
-           
-          {/* </SubmenuStyle> */}
-          <AreaDropdown />
-          {/* <Button> Areas <Submenu sub={AreaMenuItems} /></Button> */}
-
-
-          <Dropdown style={{ color: 'white' }} />
+          <h1>Welcome</h1>
 
           <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
             <input type="submit" />
           </form>
+
+
+
+
         </Nav>
-        <Flex>
+      </Container>
+      </StyledHeader>
+      <StyledHeader2>
+      <Container>
+        <Flex2>
           <div style={{ marginLeft: '-25%' }}>
             <h1>Vanilla JS Restaurant</h1>
             <p> We are changing the way you eat! The choice is yours..</p>
-            
+
           </div>
           <Image src={VanillaJS2} alt="VanillaJS2" />
-        </Flex>
+        </Flex2>
       </Container>
-    </StyledHeader>
+      </StyledHeader2>
+      <Container>
+        <Flex>
+          <Button onClick={() => navigate(`/searchResults/r=`)}> All Recipes </Button>
+          <Button onClick={() => navigate(`/favorites`)}> Favorites </Button>
+          {/* <Button onClick={()=> handleCatButtonClick}>Category<CatDropdown/></Button> */}
+          
+        </Flex>
+        <StyledHeader2>
+          <StyledHeader2>
+            <Container>
+                <CatDropdown/>
+            </Container>
+          </StyledHeader2>
+          <StyledHeader2>
+            <Container>
+                <Button><AreaDropdown /></Button>
+            </Container>
+          </StyledHeader2>
+        
+        </StyledHeader2>
+
+
+
+
+
+
+        {/* <Dropdown style={{ color: 'white' }} /> */}
+      </Container>
+    </>
   )
 }
 
@@ -231,3 +290,9 @@ export const Header = () => {
 // .dropdown:hover .dropdown-content {
 //   display: block;
 // }
+
+                  {/* <form onSubmit={handleSubmit}>
+	<label for="search">Search</label>
+	<input  id="search" value={searchText} onChange={(e) => setSearchText(e.target.value)} type="search" pattern=".*\S.*" required />
+	<span class="caret"></span>
+      </form> */}
