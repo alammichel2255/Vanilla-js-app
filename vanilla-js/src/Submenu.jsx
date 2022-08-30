@@ -10,9 +10,10 @@ import { Dropdown } from "./Dropdown"
 export const Submenu = ({ sub }) => {
     const [tempMealCatArr, setTempMealCatArr] = useState([]);
     const navigate = useNavigate();
-        const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText, catMealArray, setCatMealArray } = useContext(MealContext);
+    const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText, catMealArray, setCatMealArray, setMealSearchText } = useContext(MealContext);
 
     const handleClick = (item) => {
+        // setMealSearchText(item);
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${item}`)
             .then(res => res.json())
             .then(data => setTempMealCatArr(data.meals))
@@ -35,6 +36,8 @@ export const Submenu = ({ sub }) => {
                     <div onClick={() => { 
                         handleClick(item);
                         navigate(`/searchResults/${item}`)
+                        
+                        // navigate(`/searchResults/=${item}`)
                     }}>{item}</div>
 
                 )
