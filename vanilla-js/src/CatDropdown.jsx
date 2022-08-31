@@ -28,42 +28,40 @@ color: white;
 `
 const StyledHeader = styled.header`
     display: flex;
-    justify-content: center;
-  background-color: black;
+justify-content: center;
+  background-color: white;
   padding: 5px 0;
-  padding-bottom: px;
-  border: 3px solid black;
+  padding-bottom: 5px;
+  cursor: pointer;
   height: 50px;
   width: 100%;
- 
   `
-  const Container = styled.div`
+
+const Container = styled.div`
   width: 1000px;
   max-width: 100%;
   padding: 0 10px;
   margin: 0 auto;
-
-  
   `
-  const Nav = styled.nav`
+const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
   width: 100%;
   color: white;
-  
+  border-radius: 10px;
   `
 
 const SubmenuStyle = styled.div`
-border-radius: 50px;
+border-radius: 10px;
+width: 850px;
 border: none;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 cursor: pointer;
 font-size: 16px
 font-weight: 700;
 padding: 15px 60px;
-background-color: grey;
 color: white;
 &:hover {
   opacity: 0.8;
@@ -71,6 +69,18 @@ color: white;
   font-type: poppins;
 }
 `
+
+const Flex = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+// padding-top: 2px;
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
 
 export const CatDropdown = () => {
 
@@ -99,26 +109,31 @@ export const CatDropdown = () => {
         }
     }
 
-    
-    //////// Click outside of the dropdown to hide//////////
+    return (
+        <Flex onClick={() => handleClick()}>
+            <StyledHeader style={{ color: 'white' }}><h3>Category</h3></StyledHeader>
+           
+            {/* <Container style={{ display: display }}> */}
+                <SubmenuStyle style={{ display: display }}>
+                    <Submenu sub={CategoryMenuItems} />
+                </SubmenuStyle>
+            {/* </Container> */}
+        </Flex>
+
+
+
+
+
+
+    )
+
+}
+
+
+  //////// Click outside of the dropdown to hide//////////
 
     // function hadleClick2() {
     //     if (display == 'block') {
     //         setDisplay('none')
     //     }
     // }
-
-    return (
-        <StyledHeader onClick={() => handleClick()}>
-        <h3 style={{color:'white'}}>Category</h3>
-
-        <SubmenuStyle style={{display:display}}>
-        <Submenu sub={CategoryMenuItems} />
-        </SubmenuStyle>
-            
-     
-       
-         </StyledHeader>
-    )
-
-}

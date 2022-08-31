@@ -11,7 +11,7 @@ import { useParams } from "react-router";
 const StyledCard = styled.div`
 display: flex;
 flex-direction: row;
-mid-width: 1496px;
+width: 750px;
 flex-wrap: wrap;
 justify-content: center;
 background-color: #f5f5f5;
@@ -19,6 +19,9 @@ border-radius: 15px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 margin: 40px 0;
 pad
+&:hover {
+    opacity: 2.5;
+    transform: scale (2.98);
 `
 const StyledCardInfo = styled.div`
 display: flex;
@@ -28,17 +31,59 @@ justify-content: space-evenly;
 align-items: center;
 background-color: #f5f5f5;
 border-radius: 15px;
+
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-margin: 40px 0;
-pad
+margin: 5px 0;
+
+
 `
+const Flex = styled.div`
+display: flex;
+flex-wrap: wrap;
+padding-top: 0px;
+gap: 20px 20px;
+padding-bottom: 15px;
+align-items: center;
+text-align: center;
+justify-content: space-between;
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
 
 const Container = styled.div`
 width: 1000px;
 max-width: 100%;
-padding: 0 10px;
+padding: 0 1px;
 margin: 0 auto;
 
+
+`
+const Image = styled.img`
+width: 200px;
+height: 200px;
+border: 10px solid black;
+&:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transform: scale (0.98);
+`
+const Button = styled.button`
+border-radius: 50px;
+border: none;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+cursor: pointer;
+font-size: 16px
+font-weight: 700;
+padding: 10px 20px;
+background-color: black;
+color: white;
+&:hover {
+  opacity: 0.8;
+  transform: scale (0.98);
+  font-type: poppins;
+  
 `
 
 
@@ -47,6 +92,8 @@ export const SearchResults = () => {
     const { mealArray, setMealArray, individualMealDetails, setIndividualMealDetails, mealSearchText, catMealArray, setCatMealArray } = useContext(MealContext);
     const navigate = useNavigate();
     const { query } = useParams();
+    const { tempFavArray, setTempFavArray } = useContext(MealContext);
+    const { tempLocal, setTempLocal } = useContext(MealContext);
     // const [ingredientsArray, setIngredientsArray] = useState([])
 
     // fetches per a search for meal name
@@ -83,6 +130,49 @@ export const SearchResults = () => {
             })
     }, [mealSearchText])
 
+    return (
+        <>
+        <h3>Results: {mealArray.length}</h3>
+        <Container>
+            <Flex>
+        
+            
+            <>
+                {mealArray.map(meal => {
+                    return (
+                        <>
+                        <StyledCardInfo>
+                            <div onClick={() => {
+                            navigate(`/details/${meal.idMeal}`)
+                            }}>  
+                            <h6 style={{fontSize:'15px'}}>{meal.strMeal}</h6>
+                            <Image src={meal.strMealThumb} alt={meal.strMeal} style={{width: '200px', height:'200px'}} />
+                            </div>
+                            <Button onClick={() => {
+                            let contains = 0;
+                            for(let i of tempFavArray){
+                                if(i.strMeal === meal.strMeal){
+                                    contains = 1
+                                }
+                            }
+                            if(!contains){
+                                setTempFavArray(current => [...current, meal])
+                            }
+                            }}>Add to Favorites</Button>
+                        </StyledCardInfo>
+
+                        </>
+                    )
+                })}
+            </>
+            
+        
+        </Flex>
+        </Container>
+        </>
+    )
+}
+
     // useEffect(() =>{
     //     console.log('app catmealarray: ', catMealArray)
     //     // setMealArray(catMealArray)
@@ -103,25 +193,7 @@ export const SearchResults = () => {
     //         }
     //     }
     // }, [individualMealDetails])
-    
 
-    return (
-        <>
-        <h3>Results: {mealArray.length}</h3>
-        <StyledCard>
-            
-            <>
-                {mealArray.map(meal => {
-                    return (
-                        <StyledCardInfo onClick={() => {
-                            // setIndividualMealDetails(meal);
-                            navigate(`/details/${meal.idMeal}`)
-                        }
-                        }>
-                              
-                            <h6>{meal.strMeal}</h6>
-                            <img src={meal.strMealThumb} alt={meal.strMeal}  />
-                            
                             {/* <ul>
                             {setIndividualMealDetails(meal)}    
                             {ingredientsArray.map((ingredient) => 
@@ -149,11 +221,3 @@ export const SearchResults = () => {
                                 <li>{meal.strIngredient19}: {meal.strMeasure19}</li>
                                 <li>{meal.strIngredient20}: {meal.strMeasure20}</li> */}
                             {/* </ul> */}
-                        </StyledCardInfo>
-                    )
-                })}
-            </>
-        </StyledCard>
-        </>
-    )
-}

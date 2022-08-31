@@ -18,10 +18,18 @@ color: white;
   opacity: 0.8;
   transform: scale (0.98);
 `
+const Container = styled.div`
+  width: 1000px;
+  max-width: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+  align-contents: center;
+  `
+
 const StyledCard = styled.div`
 display: flex;
 flex-direction: column;
-mid-width: 1496px;
+width: 700px;
 
 align-items: center;
 background-color: white;
@@ -30,11 +38,25 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 margin: 40px 0;
 padding: 60px;
 `
+const Flex = styled.div`
+display: flex;
+padding-top: 15px;
+padding-bottom: 85px;
+align-items: center;
+text-align: center;
+justify-content: space-between;
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
 
 export const ErrorLanding = () => {
     const { randomMeal, setRandomMeal } = useContext(MealContext);
     return (
         <>
+             <Container>
+                <Flex>
             <StyledCard>
             <h1>Sorry we couldn't find the meal you were looking for...</h1>
             <p>Have you considered giving our meal of the day a try?</p>
@@ -42,13 +64,11 @@ export const ErrorLanding = () => {
                 .then(res => res.json())
                 .then(data => {
                     setRandomMeal(data.meals[0])
-                })}>Or perhaps a different meal?</Button>
+                })}><h3 style={{color:'white', fontSize:'15px'}}>Or perhaps a different meal?</h3></Button>
+                <RandomMeal />
             </StyledCard>
-            <RandomMeal />
-            <div>
-
-
-            </div>
+            </Flex>
+            </Container>
         </>
     )
 }

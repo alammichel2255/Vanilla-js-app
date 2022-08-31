@@ -29,9 +29,11 @@ function App() {
 
   const [tempFavArray, setTempFavArray] = useState([])
 
+  const { tempLocal, setTempLocal } = useState([]);
+
   const [catSubmenuDisplay, setCatSubmenuDisplay] = useState('none');
 
-  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal, catMealArray, setCatMealArray, catSubmenuDisplay, setCatSubmenuDisplay, tempFavArray, setTempFavArray };
+  const passContext = { mealArray, setMealArray, mealSearchText, setMealSearchText, individualMealDetails, setIndividualMealDetails, randomMeal, setRandomMeal, catMealArray, setCatMealArray, catSubmenuDisplay, setCatSubmenuDisplay, tempFavArray, setTempFavArray, tempLocal, setTempLocal };
 
   // on loading, picks a random meal to display
   useEffect(() =>{  
@@ -41,6 +43,10 @@ function App() {
       setRandomMeal(data.meals[0])
     })
   }, [])
+
+
+
+
 
   // // fetches per a search for meal name
   // useEffect(()=> {

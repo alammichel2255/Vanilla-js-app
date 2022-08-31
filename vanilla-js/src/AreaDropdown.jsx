@@ -18,7 +18,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 cursor: pointer;
 font-size: 16px
 font-weight: 700;
-padding: 15px 60px;
+padding: 15px 20px;
 background-color: black;
 color: white;
 &:hover {
@@ -28,14 +28,14 @@ color: white;
 `
 
 const SubmenuStyle = styled.div`
-border-radius: 50px;
+border-radius: 10px;
 border: none;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 cursor: pointer;
 font-size: 16px
 font-weight: 700;
 padding: 15px 60px;
-background-color: grey;
+background-color: white;
 color: white;
 &:hover {
   opacity: 0.8;
@@ -43,6 +43,45 @@ color: white;
   font-type: poppins;
 }
 `
+
+const StyledHeader = styled.header`
+    display: flex;
+justify-content: center;
+  background-color: black;
+  padding: 5px 0;
+  padding-bottom: 0px;
+  border: 3px solid black;
+  height: 50px;
+  width: 100%;
+  `
+
+const Container = styled.div`
+  width: 1000px;
+  max-width: 100%;
+  padding: 0px 10px;
+  margin: 0 auto;
+  `
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+  color: white;
+  `
+
+  const Flex = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+cursor: pointer;
+padding-top: 10px;
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
 
 
 export const AreaDropdown = () => {
@@ -69,24 +108,16 @@ export const AreaDropdown = () => {
         }
     }
 
-    
-    //////// Click outside of the dropdown to hide//////////
-
-    // function hadleClick2() {
-    //     if (display == 'block') {
-    //         setDisplay('none')
-    //     }
-    // }
-
     return (
-        <div>
-            <div onClick={handleClick}>
-                Area
-            </div>
-            <SubmenuStyle style={{display:display}}>
-                <Submenu sub={AreaMenuItems} />
-            </SubmenuStyle>
-        </div>
+        
+            <Flex onClick={handleClick}>
+            <h3 style={{ color: 'black' }}>Area</h3>
+            <Container style={{ display: display }}>
+                <SubmenuStyle>
+                    <Submenu sub={AreaMenuItems} />
+                </SubmenuStyle>
+            </Container>
+        </Flex>
     )
 
 }

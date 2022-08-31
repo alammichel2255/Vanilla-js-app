@@ -15,10 +15,9 @@ import { AreaDropdown } from './AreaDropdown';
 
 
 const StyledHeader = styled.header`
-  background-color: grey;
+  background-color: white;
   padding: 5px 0;
   padding-bottom: 5px;
-  border: 3px solid black;
   height: 150px;
  
   `
@@ -32,16 +31,39 @@ const Container = styled.div`
   max-width: 100%;
   padding: 0 10px;
   margin: 0 auto;
-
-  
   `
-const Nav = styled.nav`
+  const NavContainer = styled.div`
+  width: 1000px;
+  max-width: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-basis: auto;
+  flex-direction: row;
+  `
+
+const NavLeft = styled.section`
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  flex-direction: row;
+  `
+  const NavCenter = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 20px;
-  
+  flex-direction: row;
   `
+  const NavRight = styled.nav`
+  display: flex;
+  align-items: right;
+  align-items: center;
+  justify-content: right;
+  margin-bottom: 20px;
+  flex-direction: column;
+  `
+
 const Button = styled.button`
 border-radius: 50px;
 border: none;
@@ -59,12 +81,13 @@ color: white;
 `
 const Logo = styled.img`
 width: 200px;
+height: 150px;
 
 `
 
 const Flex = styled.div`
 display: flex;
-padding-top: 20px;
+padding-top: 15px;
 padding-bottom: 85px;
 align-items: center;
 text-align: center;
@@ -90,9 +113,9 @@ color: black;
 
 
 const Image = styled.img`
-width: 450px;
-margin-left: 40px;
+width: 187px;
 border: 10px solid black;
+margin-bottom: 20px;
 &:hover {
   cursor: pointer;
   opacity: 0.8;
@@ -169,53 +192,74 @@ export const Header = () => {
 
   return (
 <>
-  <StyledHeader>
-      <Container>
-        <Nav>
-          <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} />
-          <h1>Welcome</h1>
+  <StyledHeader style={{gap: '10px 20px'}}>
+      <NavContainer style={{gap: '10px 20px'}}>
+        <NavLeft>
+        <Logo src={VanillaJS} alt="VanillaJS" onClick={() => navigate('/')} />
+        </NavLeft>
+        <NavCenter>
+        {/* <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} /> */}
+        <h1>Vanilla JS Restaurant</h1>
+          {/* <h3>We are changing the way you eat! The choice is yours</h3> */}
 
+        </NavCenter>
+        <NavRight>
+        <Image src={VanillaJS2} alt="VanillaJS2"/>
           <form onSubmit={handleSubmit}>
+          <NavCenter>
             <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
             <input type="submit" />
+            </NavCenter>
           </form>
-
-
-
-
-        </Nav>
-      </Container>
+        </NavRight>
+      </NavContainer>
       </StyledHeader>
+
       <StyledHeader2>
       <Container>
         <Flex2>
           <div style={{ marginLeft: '-25%' }}>
-            <h1>Vanilla JS Restaurant</h1>
-            <p> We are changing the way you eat! The choice is yours..</p>
+            
+            {/* <p> We are changing the way you eat! The choice is yours..</p> */}
 
           </div>
-          <Image src={VanillaJS2} alt="VanillaJS2" />
+          
         </Flex2>
       </Container>
       </StyledHeader2>
       <Container>
-        <Flex>
-          <Button onClick={() => navigate(`/searchResults/r=`)}> All Recipes </Button>
-          <Button onClick={() => navigate(`/favorites`)}> Favorites </Button>
-          {/* <Button onClick={()=> handleCatButtonClick}>Category<CatDropdown/></Button> */}
-          
-        </Flex>
-        <StyledHeader2>
-          <StyledHeader2>
-            <Container>
+      <Container>
                 <CatDropdown/>
             </Container>
-          </StyledHeader2>
-          <StyledHeader2>
             <Container>
-                <Button><AreaDropdown /></Button>
+                <AreaDropdown />
             </Container>
-          </StyledHeader2>
+      {/* <Container>
+        <Flex>
+        <h2>Categories</h2> <h2>Areas</h2>
+        </Flex>
+      </Container>
+      <Container style={{display:'flex', flexDirection: 'row', justifyContent: 'space-evenly', gap:'10px 450px'}}>
+        <Flex>
+         
+        </Flex>
+        <Flex>
+        
+        </Flex>
+      </Container> */}
+        {/* <Flex>
+          {/* <Button onClick={() => navigate(`/searchResults/r=`)}> All Recipes </Button> */}
+          <NavCenter>
+          <Button onClick={() => navigate(`/favorites`)}> Favorites Page</Button>
+          </NavCenter>
+          
+          {/* <Button onClick={()=> handleCatButtonClick}>Category<CatDropdown/></Button> */}
+          
+        {/* </Flex>  */}
+        <StyledHeader2>
+          
+            
+          
         
         </StyledHeader2>
 

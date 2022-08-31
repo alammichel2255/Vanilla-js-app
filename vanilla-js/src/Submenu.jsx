@@ -7,6 +7,26 @@ import { SearchResults } from "./SearchResults";
 import { ErrorLanding } from "./ErrorLanding";
 import { Dropdown } from "./Dropdown"
 
+const Container = styled.div`
+  width: 1000px;
+  max-width: 100%;
+  padding: 0 5px;
+  margin: 0 auto;
+  flex-wrap: wrap;  
+  `
+
+  const Flex = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+padding-top: 0px;
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
+
 export const Submenu = ({ sub }) => {
     const [tempMealCatArr, setTempMealCatArr] = useState([]);
     const navigate = useNavigate();
@@ -30,28 +50,22 @@ export const Submenu = ({ sub }) => {
 
     return (
         // <li>thing</li>
-        <ul>
+        <Container style={{display: 'flex', flexDirection:'row', justifyContent: 'space-evenly'}}>
+            
             {sub.subMenu.map(item => {
                 return (
-                    <div onClick={() => { 
+                    <Flex style={{width: '11%'}} onClick={() => { 
                         handleClick(item);
                         // navigate(`/searchResults/${item}`)
                         
                         navigate(`/searchResults/${sub.url}=${item}`)
-                    }}>{item}</div>
-
+                    }}><h3 style={{fontSize:'15px', color:'black'}}>{item}</h3></Flex>
                 )
             })}
+            
+           
 
-        </ul>
-        // {submenu.map(item => {
-        //     return(
-        //         <li>{item}</li>
-        //     )
-
-        // })
-
-        // }
+        </Container>
 
     )
 }
