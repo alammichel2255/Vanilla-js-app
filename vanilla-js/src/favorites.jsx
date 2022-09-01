@@ -5,7 +5,22 @@ import { MealContext } from './MealContext';
 import { Header } from './Header'
 import { RandomMeal } from './RandomMeal';
 
-
+const Button = styled.button`
+border-radius: 50px;
+border: none;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+cursor: pointer;
+font-size: 16px
+font-weight: 700;
+padding: 10px 20px;
+background-color: black;
+color: white;
+&:hover {
+  opacity: 0.8;
+  transform: scale (0.98);
+  font-type: poppins;
+  
+`
 
 const Image = styled.img`
 width: 200px;
@@ -19,14 +34,14 @@ border: 10px solid black;
 const StyledCardInfo = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: center;
+mid-width: 1496px;
+justify-content: space-evenly;
 align-items: center;
 background-color: #f5f5f5;
 border-radius: 15px;
+
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-margin: 10px 0;
-height: 500px;
-width: 700px;
+margin: 5px 0;
 
 
 
@@ -109,7 +124,7 @@ export const Favorites = () => {
         <h3>Results: {tempFavArray.length}</h3>
         
             
-            <Flex>
+            {/* <Flex>
                 {tempFavArray.map(meal => {
                     return (
                         <StyledCardInfo onClick={() => {
@@ -125,9 +140,33 @@ export const Favorites = () => {
                 })}
             
         
+        </Flex> */}
+
+
+        
+            <Flex>
+<>
+                {tempFavArray.map(meal => {
+                    return (
+                        <>
+                        <StyledCardInfo>
+                            <div onClick={() => {
+                            navigate(`/details/${meal.idMeal}`)
+                            }}>  
+                            <h6 style={{fontSize:'15px'}}>{meal.strMeal}</h6>
+                            <Image src={meal.strMealThumb} alt={meal.strMeal} style={{width: '200px', height:'200px'}} />
+                            </div>
+                            <Button onClick={() => {
+                                console.log("remove from favorites not written")}}>Remove From Favorites</Button>
+                        </StyledCardInfo>
+
+                        </>
+                    )
+                })}
+            </>
+            
+        
         </Flex>
-
-
 
 
         </Container>
