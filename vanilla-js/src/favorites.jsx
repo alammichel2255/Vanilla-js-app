@@ -83,6 +83,7 @@ export const Favorites = () => {
     //     console.log("Temp Fav Array", tempFavArray);
     //     let tempArray = []
     //     const local = JSON.parse(localStorage.getItem('favArray'));
+    //     console.log(local)
     //     tempArray.push(local)
     //     tempArray.push(tempFavArray)
     //     localStorage.setItem("favArray", JSON.stringify(tempArray));

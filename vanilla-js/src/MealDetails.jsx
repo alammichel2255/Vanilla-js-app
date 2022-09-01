@@ -142,33 +142,26 @@ export const MealDetails = () => {
     const [currentMeal, setCurrentMeal] = useState({});
     const [youtubeEmbedLink, setYoutubeEmbedLink] = useState('')
     const [ingredientsArray, setIngredientsArray] = useState([])
-    
+
     const { id } = useParams();
-    // const youtubeEmbedLink = currentMeal.strYoutube.replace('watch?v=', 'embed/');
-    // console.log(youtubeEmbedLink);
 
     useEffect(() => {
-       fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-       .then(res => res.json())
-       .then(data => {
-        setCurrentMeal(data.meals[0])
-        setYoutubeEmbedLink(data.meals[0].strYoutube.replace('watch?v=', 'embed/'))
-    })
+        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+            .then(res => res.json())
+            .then(data => {
+                setCurrentMeal(data.meals[0])
+                setYoutubeEmbedLink(data.meals[0].strYoutube.replace('watch?v=', 'embed/'))
+            })
     }, [])
 
     useEffect(() => {
-        // setIngredientsArray([]);
         const tempArray = [];
-        for(let i = 1; i <= 20; i++){
-            if(currentMeal[`strIngredient${i}`]){
+        for (let i = 1; i <= 20; i++) {
+            if (currentMeal[`strIngredient${i}`]) {
                 const ingredients = currentMeal[`strIngredient${i}`]
-                // console.log("ingredients", ingredients);
                 const measurements = currentMeal[`strMeasure${i}`];
-                // const tempArray = ingredientsArray;
                 tempArray.push(`${ingredients} : ${measurements}`)
                 setIngredientsArray(tempArray);
-                //code below doesn't work for some reason
-                // setIngredientsArray(...ingredientsArray, `${ingredients} : ${measurements}`)
             }
         }
     }, [currentMeal])
@@ -180,94 +173,63 @@ export const MealDetails = () => {
 
     return (
         <>
-        <Container>
-    <StyledCard>
-        <div>
-            {/* <h1>Meal Detail Page</h1> */}
-            <NoMarginH1
-            >{currentMeal.strMeal}</NoMarginH1>
-            <NoMarginH3>Category: {currentMeal.strCategory}</NoMarginH3>
-            <NoMarginH3>Area: {currentMeal.strArea}</NoMarginH3>
+            <Container>
+                <StyledCard>
+                    <div>
+                        <NoMarginH1
+                        >{currentMeal.strMeal}</NoMarginH1>
+                        <NoMarginH3>Category: {currentMeal.strCategory}</NoMarginH3>
+                        <NoMarginH3>Area: {currentMeal.strArea}</NoMarginH3>
 
-            <Flex>
-            <Button onClick={() => {
-                let contains = 0;
-                for(let i of tempFavArray){
-                    if(i.strMeal === currentMeal.strMeal){
-                        contains = 1
-                    }
-                }
-                if(!contains){
-                    setTempFavArray(current => [...current, currentMeal])
-                }
-                }}>Add to Favorites</Button> 
-            </Flex>
+                        <Flex>
+                            <Button onClick={() => {
+                                 //checks if the current meal is in tempFavArray before putting it in tempFavArray for display on favorites page
+                                let contains = 0;
+                                for (let i of tempFavArray) {
+                                    if (i.strMeal === currentMeal.strMeal) {
+                                        contains = 1
+                                    }
+                                }
+                                if (!contains) {
+                                    setTempFavArray(current => [...current, currentMeal])
+                                }
+                            }}>Add to Favorites</Button>
+                        </Flex>
 
-        </div>
-        </StyledCard>
-        </Container>
-        
-        <Container>
-        <StyledDetailFooter>
-                <div>
-                   <Image src={currentMeal.strMealThumb} alt= {currentMeal}/>
-               </div>
-           
+                    </div>
+                </StyledCard>
+            </Container>
 
-            <Logo src= {Rogo}/>
-            <Widget/>
+            <Container>
+                <StyledDetailFooter>
+                    <div>
+                        <Image src={currentMeal.strMealThumb} alt={currentMeal} />
+                    </div>
 
 
-            </StyledDetailFooter>
-            
+                    <Logo src={Rogo} />
+                    <Widget />
+
+
+                </StyledDetailFooter>
+
                 <Flex2>
                     <StyledDetailFooter2>
                         <h2>Ingredients</h2>
-            <Flex2>
-                {ingredientsArray.map((ingredient) => 
-                    <h5 style={{fontSize:'18.5px', margin:'1%'}}>{ingredient}</h5>
-                )}
-            </Flex2>
-            </StyledDetailFooter2>
-            </Flex2>
-            
-            <StyledDetailVideo>
-            <p style={{fontSize:'1.2em'}}>{currentMeal.strInstructions}</p>
+                        <Flex2>
+                            {ingredientsArray.map((ingredient) =>
+                                <h5 style={{ fontSize: '18.5px', margin: '1%' }}>{ingredient}</h5>
+                            )}
+                        </Flex2>
+                    </StyledDetailFooter2>
+                </Flex2>
 
-            <iframe width="640" height="360" src={youtubeEmbedLink} title={currentMeal.strMeal} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </StyledDetailVideo>
-        </Container>
+                <StyledDetailVideo>
+                    <p style={{ fontSize: '1.2em' }}>{currentMeal.strInstructions}</p>
+
+                    <iframe width="640" height="360" src={youtubeEmbedLink} title={currentMeal.strMeal} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </StyledDetailVideo>
+            </Container>
         </>
     )
 }
-
-
-
-
-
-
-
-
-               {/* <li>{currentMeal.strIngredient1}: {currentMeal.strMeasure1}</li>
-                <li>{currentMeal.strIngredient2}: {currentMeal.strMeasure2}</li>
-                <li>{currentMeal.strIngredient3}: {currentMeal.strMeasure3}</li>
-                <li>{currentMeal.strIngredient4}: {currentMeal.strMeasure4}</li>
-                <li>{currentMeal.strIngredient5}: {currentMeal.strMeasure5}</li>
-                <CardRight>
-                
-                </CardRight>
-                <li>{currentMeal.strIngredient6}: {currentMeal.strMeasure6}</li>
-                <li>{currentMeal.strIngredient7}: {currentMeal.strMeasure7}</li>
-                <li>{currentMeal.strIngredient8}: {currentMeal.strMeasure8}</li>
-                <li>{currentMeal.strIngredient9}: {currentMeal.strMeasure9}</li>
-                <li>{currentMeal.strIngredient10}: {currentMeal.strMeasure10}</li>
-                <li>{currentMeal.strIngredient11}: {currentMeal.strMeasure11}</li>
-                <li>{currentMeal.strIngredient12}: {currentMeal.strMeasure12}</li>
-                <li>{currentMeal.strIngredient13}: {currentMeal.strMeasure13}</li>
-                <li>{currentMeal.strIngredient14}: {currentMeal.strMeasure14}</li>
-                <li>{currentMeal.strIngredient15}: {currentMeal.strMeasure15}</li>
-                <li>{currentMeal.strIngredient16}: {currentMeal.strMeasure16}</li>
-                <li>{currentMeal.strIngredient17}: {currentMeal.strMeasure17}</li>
-                <li>{currentMeal.strIngredient18}: {currentMeal.strMeasure18}</li>
-                <li>{currentMeal.strIngredient19}: {currentMeal.strMeasure19}</li>
-                <li>{currentMeal.strIngredient20}: {currentMeal.strMeasure20}</li> */}

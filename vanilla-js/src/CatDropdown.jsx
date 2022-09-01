@@ -114,27 +114,12 @@ export const CatDropdown = () => {
         <Flex onClick={() => handleClick()}>
             <StyledHeader style={{ color: 'white' }}><h3>Category</h3></StyledHeader>
            
-            {/* <Container style={{ display: display }}> */}
                 <SubmenuStyle style={{ display: display }}>
                     <Submenu sub={CategoryMenuItems} />
                 </SubmenuStyle>
-            {/* </Container> */}
+         
         </Flex>
-
-
-
-
-
-
     )
-
 }
 
 
-  //////// Click outside of the dropdown to hide//////////
-
-    // function hadleClick2() {
-    //     if (display == 'block') {
-    //         setDisplay('none')
-    //     }
-    // }

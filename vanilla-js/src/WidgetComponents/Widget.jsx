@@ -33,7 +33,7 @@ export const Widget = () => {
             let val = unit === "Tablespoon"
                 ? input * conversionVal//[0] + conversionVal[1]
                 : input / conversionVal//[1]) / conversionVal[0]
-            return val.toFixed(1)
+            return val.toFixed(3)
         }
 
         let val = ["Kilogram", "Gram", "Milliliter"].includes(unit)

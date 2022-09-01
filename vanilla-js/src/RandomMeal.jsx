@@ -14,7 +14,6 @@ cursor: pointer;
 img{
 width: 550px;
 border: 10px solid black;
-
 }
 `
 const Container = styled.div`
@@ -37,25 +36,11 @@ text-transform-value: Capitalize;
 & >ul {
   flex: 1;
 }`
+
 export const RandomMeal = () => {
     const { randomMeal, setRandomMeal, individualMealDetails, setIndividualMealDetails } = useContext(MealContext);
     console.log('random meal: ', randomMeal);
     const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setRandomMeal(data.meals[0])
-    //         })
-    // }, [])
-
-    // let youTubeLink = randomMeal.strYoutube;
-    // console.log(youTubeLink);
-    // if(youTubeLink !== undefined) {
-    //     let youTubeId = youTubeLink.slice(youTubeLink.indexOf('=')+1);
-    //     console.log('yt id:',youTubeId);
-    // }
 
 
     return (
@@ -75,5 +60,3 @@ export const RandomMeal = () => {
 
 )
 }
-{/* <Link to={`/details/${randomMeal.id}`}> */}
-{/* <video width="640" height="480" src='https://www.youtube.com/watch?v=IqXEZUk4hWI' controls>XXDRVRV </video> */}
