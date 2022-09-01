@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
   height: 150px;
  
   `
-  const StyledHeader2 = styled.div`
+const StyledHeader2 = styled.div`
   background-color: white;
   padding: 10px 0;
   `
@@ -32,7 +32,7 @@ const Container = styled.div`
   padding: 0 10px;
   margin: 0 auto;
   `
-  const NavContainer = styled.div`
+const NavContainer = styled.div`
   width: 1000px;
   max-width: 100%;
   padding: 0 10px;
@@ -48,14 +48,14 @@ const NavLeft = styled.section`
   justify-content: left;
   flex-direction: row;
   `
-  const NavCenter = styled.nav`
+const NavCenter = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
   flex-direction: row;
   `
-  const NavRight = styled.nav`
+const NavRight = styled.nav`
   display: flex;
   align-items: right;
   align-items: center;
@@ -185,56 +185,58 @@ export const Header = () => {
   const handleCatButtonClick = () => {
     if (catSubmenuDisplay == 'none') {
       setCatSubmenuDisplay('block')
-  } else {
+    } else {
       setCatSubmenuDisplay('none')
-  }
+    }
   }
 
   return (
-<>
-  <StyledHeader style={{gap: '10px 20px'}}>
-      <NavContainer style={{gap: '10px 20px'}}>
-        <NavLeft>
-        <Logo src={VanillaJS} alt="VanillaJS" onClick={() => navigate('/')} />
-        </NavLeft>
-        <NavCenter>
-        {/* <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} /> */}
-        <h1>Vanilla JS Restaurant</h1>
-          {/* <h3>We are changing the way you eat! The choice is yours</h3> */}
-
-        </NavCenter>
-        <NavRight>
-        <Image src={VanillaJS2} alt="VanillaJS2"/>
-          <form onSubmit={handleSubmit}>
+    <>
+      <StyledHeader style={{ gap: '10px 20px', backgroundImage: 'url(/home/iandg/galvanize/Vanilla-JS/vanilla-js/src/VanillaJS2.png)' }}>
+        <NavContainer style={{ gap: '10px 20px' }}>
+          <NavLeft>
+          <Button onClick={() => navigate(`/favorites`)}> Favorites Page</Button>
+            {/* <Logo src={VanillaJS} alt="VanillaJS" onClick={() => navigate('/')} /> */}
+          </NavLeft>
           <NavCenter>
-            <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
-            <input type="submit" />
-            </NavCenter>
-          </form>
-        </NavRight>
-      </NavContainer>
+            {/* <Logo src={VanillaJS} alt="VanillaJS" width="100px" onClick={() => navigate('/')} /> */}
+            {/* <h1>Vanilla JS Restaurant</h1> */}
+            <Logo src={VanillaJS} alt="VanillaJS" onClick={() => navigate('/')} />
+            {/* <h3>We are changing the way you eat! The choice is yours</h3> */}
+
+          </NavCenter>
+          <NavRight>
+            <Image src={VanillaJS2} alt="VanillaJS2" />
+            <form onSubmit={handleSubmit}>
+              <NavCenter>
+                <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+                <input type="submit" />
+              </NavCenter>
+            </form>
+          </NavRight>
+        </NavContainer>
       </StyledHeader>
 
       <StyledHeader2>
-      <Container>
-        <Flex2>
-          <div style={{ marginLeft: '-25%' }}>
-            
-            {/* <p> We are changing the way you eat! The choice is yours..</p> */}
+        <Container>
+          <Flex2>
+            <div style={{ marginLeft: '-25%' }}>
 
-          </div>
-          
-        </Flex2>
-      </Container>
+              {/* <p> We are changing the way you eat! The choice is yours..</p> */}
+
+            </div>
+
+          </Flex2>
+        </Container>
       </StyledHeader2>
       <Container>
-      <Container>
-                <CatDropdown/>
-            </Container>
-            <Container>
-                <AreaDropdown />
-            </Container>
-      {/* <Container>
+        <Container>
+          <CatDropdown />
+        </Container>
+        <Container>
+          <AreaDropdown />
+        </Container>
+        {/* <Container>
         <Flex>
         <h2>Categories</h2> <h2>Areas</h2>
         </Flex>
@@ -249,18 +251,18 @@ export const Header = () => {
       </Container> */}
         {/* <Flex>
           {/* <Button onClick={() => navigate(`/searchResults/r=`)}> All Recipes </Button> */}
-          <NavCenter>
+        <NavCenter>
           <Button onClick={() => navigate(`/favorites`)}> Favorites Page</Button>
-          </NavCenter>
-          
-          {/* <Button onClick={()=> handleCatButtonClick}>Category<CatDropdown/></Button> */}
-          
+        </NavCenter>
+
+        {/* <Button onClick={()=> handleCatButtonClick}>Category<CatDropdown/></Button> */}
+
         {/* </Flex>  */}
         <StyledHeader2>
-          
-            
-          
-        
+
+
+
+
         </StyledHeader2>
 
 
@@ -275,16 +277,16 @@ export const Header = () => {
 }
 
 
-  // // fetches per a search for meal name
-  // useEffect(() => {
-  //   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       data.meals ? setMealArray(data) : navigate('/error');
+// // fetches per a search for meal name
+// useEffect(() => {
+//   fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealSearchText}`)
+//     .then(res => res.json())
+//     .then(data => {
+//       data.meals ? setMealArray(data) : navigate('/error');
 
-  //       console.log('meal search:', data)
-  //     })
-  // }, [mealSearchText])
+//       console.log('meal search:', data)
+//     })
+// }, [mealSearchText])
 
 
 ///////HTML DropDown/////////////
@@ -335,7 +337,7 @@ export const Header = () => {
 //   display: block;
 // }
 
-                  {/* <form onSubmit={handleSubmit}>
+{/* <form onSubmit={handleSubmit}>
 	<label for="search">Search</label>
 	<input  id="search" value={searchText} onChange={(e) => setSearchText(e.target.value)} type="search" pattern=".*\S.*" required />
 	<span class="caret"></span>

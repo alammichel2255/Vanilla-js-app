@@ -44,7 +44,7 @@ export const MeasurementSelection = ({ measurement, setMeasurement, unit, setUni
         <div>
             <label htmlFor="measurements">Measurements: </label>
             <select name="measurements" id="measurements" onChange={({ target }) => onSelectChange(target.value)}>
-                <option value="tablespoonsToCups">tablespoons To Cups </option>
+                <option value="tablespoonsToCups">Tablespoons To Cups </option>
                 <option value="weight">Weight</option>
                 <option value="density">Density</option>
             </select>
