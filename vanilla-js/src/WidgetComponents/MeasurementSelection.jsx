@@ -46,7 +46,7 @@ export const MeasurementSelection = ({ measurement, setMeasurement, unit, setUni
             <select name="measurements" id="measurements" onChange={({ target }) => onSelectChange(target.value)}>
                 <option value="tablespoonsToCups">Tablespoons To Cups </option>
                 <option value="weight">Weight</option>
-                <option value="density">Density</option>
+                <option value="density">Volume</option>
             </select>
 
             {["weight", "density"].includes(measurement)

@@ -107,7 +107,7 @@ export const Favorites = () => {
 
         <Container>
             
-            <Button onClick={() => {
+            {/* <Button onClick={() => {
             const local = localStorage.getItem('favArray');
             // const local = JSON.parse(localStorage.getItem('favArray'));
             console.log(local);
@@ -118,7 +118,7 @@ export const Favorites = () => {
             localStorage.clear();
             setTempFavArray([]);
             console.log("local storage cleared");
-            }}>Clear local storage</Button>
+            }}>Clear local storage</Button> */}
                 
         <h1>FAVORITES</h1>
             
