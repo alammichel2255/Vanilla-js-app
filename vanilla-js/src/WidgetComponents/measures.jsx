@@ -4,13 +4,8 @@ const measures = {
             conversion: 0.0625,
             "Tablespoon": { unit: "Tablespoon", symbol: "Tbs" },
             "Cup": { unit: "Cup", symbol: "c" }
-        },
-        // placeholder
-        set2: {
-            conversion: 0.0625,
-            "Tablespoon": { unit: "Tablespoon", symbol: "Tbs" },
-            "Cup": { unit: "Cup", symbol: "c" }
         }
+
     },
     weight: {
         set1: {
@@ -24,6 +19,7 @@ const measures = {
             "Ounce": { unit: "Ounce", symbol: "oz" }
         }
     },
+
     density: {
         set1: {
             conversion: 0.001,
@@ -33,7 +29,7 @@ const measures = {
         set2: {
             conversion: 0.033814,
             "Milliliter": { unit: "Milliliter", symbol: "mL" },
-            "Ounce": { unit: "Ounce", symbol: "oz" }
+            "Fluid Ounce": { unit: "Fluid Ounce", symbol: "fl oz" }
         }
     }
 }

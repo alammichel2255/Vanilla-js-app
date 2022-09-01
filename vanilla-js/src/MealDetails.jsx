@@ -33,6 +33,18 @@ margin: 40px 0;
 padding: 60px;
 height:350px;
 `
+const StyledDetailFooter2 = styled.div`
+width:90%;
+mid-width: 1496px;
+max-width: 1460px;
+align-items: center;
+background-color: #f5f5f5;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+margin: 10px 0;
+padding: 40px;
+height:300px;
+`
 const Container = styled.div`
   width: 1000px;
   max-width: 100%;
@@ -87,10 +99,21 @@ margin-bottom: 10px;
 `
 const Flex = styled.div`
 display: flex;
+flex-direction: row;
 align-items: center;
 justify-content: center;
 text-align: center;
 
+color: black;
+& > div,
+& >ul {
+  flex: 1;
+}`
+const Flex2 = styled.div`
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-evenly;
 color: black;
 & > div,
 & >ul {
@@ -183,24 +206,33 @@ export const MealDetails = () => {
         </div>
         </StyledCard>
         </Container>
+        
         <Container>
         <StyledDetailFooter>
                 <div>
                    <Image src={currentMeal.strMealThumb} alt= {currentMeal}/>
                </div>
-            <ul >
-                {ingredientsArray.map((ingredient) => 
-                    <h5 style={{fontSize:'8.5px'}}>{ingredient}</h5>
-                )}
-            </ul>
+           
 
             <Logo src= {Rogo}/>
             <Widget/>
 
 
             </StyledDetailFooter>
+            
+                <Flex2>
+                    <StyledDetailFooter2>
+                        <h2>Ingredients</h2>
+            <Flex2>
+                {ingredientsArray.map((ingredient) => 
+                    <h5 style={{fontSize:'18.5px', margin:'1%'}}>{ingredient}</h5>
+                )}
+            </Flex2>
+            </StyledDetailFooter2>
+            </Flex2>
+            
             <StyledDetailVideo>
-            <p>{currentMeal.strInstructions}</p>
+            <p style={{fontSize:'1.2em'}}>{currentMeal.strInstructions}</p>
 
             <iframe width="640" height="360" src={youtubeEmbedLink} title={currentMeal.strMeal} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </StyledDetailVideo>

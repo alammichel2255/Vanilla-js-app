@@ -11,8 +11,8 @@ export const MeasurementSelection = ({ measurement, setMeasurement, unit, setUni
 
     const changeUnit = (value) => {
         let { tablespoonsToCups, weight, density } = measures
-        value = value === weight ? "lbs" : value
-        value = value === density ? "L" : value
+        value = value === "weight" ? "lbs" : value
+        value = value === "density" ? "L" : value
 
         switch (value) {
             case "tablespoonsToCups":
@@ -31,9 +31,9 @@ export const MeasurementSelection = ({ measurement, setMeasurement, unit, setUni
                 setUnitA(density.set1["Milliliter"])
                 setUnitB(density.set1["liter"])
                 break
-            case "mL":
+            case "fl oz":
                 setUnitA(density.set2["Milliliter"])
-                setUnitB(density.set2["Ounce"])
+                setUnitB(density.set2["Fluid Ounce"])
                 break
             default:
                 break

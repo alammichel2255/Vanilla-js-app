@@ -35,6 +35,7 @@ justify-content: center;
   cursor: pointer;
   height: 50px;
   width: 100%;
+  margin-top: '5px';
   `
 
 const Container = styled.div`

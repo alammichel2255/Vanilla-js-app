@@ -157,6 +157,16 @@ export const SearchResults = () => {
                             }
                             if(!contains){
                                 setTempFavArray(current => [...current, meal])
+                                console.log("added to favorites");
+
+                                let local = []
+                                // local = JSON.parse(localStorage.getItem('favArray'));
+                                local.push(JSON.parse(localStorage.getItem('favArray')))
+                                // local.push(localStorage.getItem('favArray'));
+                                local.push(meal)
+                                localStorage.setItem("favArray", JSON.stringify(local));
+                                // localStorage.setItem("favArray", local);
+
                             }
                             }}>Add to Favorites</Button>
                         </StyledCardInfo>

@@ -4,13 +4,13 @@ export const SubSelection = ({ measurement, changeUnit, unit }) => {
     let weights = {
         name: "weights",
         values: ["lbs", "oz"],
-        labels: ["kg - lbs", "g - oz", "lbs", "oz"]
+        labels: ["kg - lbs", "g - oz"]
     }
 
     let densities = {
         name: "densities",
-        values: ["L", "oz"],
-        labels: ["mL - L", "mL - oz", "L", "oz"]
+        values: ["L", "fl oz"],
+        labels: ["mL - L", "mL - fl oz"]
     }
 
     const SelectForm = ({ name, values, labels }) => (
@@ -20,7 +20,6 @@ export const SubSelection = ({ measurement, changeUnit, unit }) => {
         </select>
     )
 
-    // we'll address this later, needs to check tbs to cups
     return measurement === "weight"
         ? SelectForm(weights)
         : SelectForm(densities)

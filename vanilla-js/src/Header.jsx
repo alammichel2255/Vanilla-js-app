@@ -4,6 +4,8 @@ import { MealContext } from "./MealContext";
 import React, { useState, useContext, useEffect } from "react";
 import VanillaJS from "./VanillaJS.png";
 import VanillaJS2 from "./VanillaJS2.png";
+import FAVORITES from "./FAVORITES.png";
+// import FAVORITES from './favorites.png';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { SearchResults } from "./SearchResults";
@@ -19,7 +21,7 @@ const StyledHeader = styled.header`
   padding: 5px 0;
   padding-bottom: 5px;
   height: 150px;
- 
+ margin-top: 5px;
   `
 const StyledHeader2 = styled.div`
   background-color: white;
@@ -33,13 +35,14 @@ const Container = styled.div`
   margin: 0 auto;
   `
 const NavContainer = styled.div`
-  width: 1000px;
-  max-width: 100%;
-  padding: 0 10px;
+width: 1000px;
+max-width: 100%;
+  padding: 0 1px;
   margin: 0 auto;
   display: flex;
   flex-basis: auto;
   flex-direction: row;
+  justify-content: center;
   `
 
 const NavLeft = styled.section`
@@ -61,7 +64,7 @@ const NavRight = styled.nav`
   align-items: center;
   justify-content: right;
   margin-bottom: 20px;
-  flex-direction: column;
+  flex-direction: row;
   `
 
 const Button = styled.button`
@@ -114,6 +117,7 @@ color: black;
 
 const Image = styled.img`
 width: 187px;
+height: 75%;
 border: 10px solid black;
 margin-bottom: 20px;
 &:hover {
@@ -136,8 +140,29 @@ color: white;
   transform: scale (0.98);
   font-type: poppins;
 }
-
 `
+
+const SubmitButton = styled.input`
+width: 187px;
+border-radius: 50px;
+border: none;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+cursor: pointer;
+font-size: 16px
+font-weight: 700;
+padding: 15px 60px;
+background-color: black;
+color: white;
+&:hover {
+  opacity: 0.8;
+  transform: scale (0.98);
+  font-type: poppins;
+`
+
+const StyledForm = styled.form`
+display:flex;
+flex-direction: column;
+` 
 
 
 
@@ -192,10 +217,12 @@ export const Header = () => {
 
   return (
     <>
-      <StyledHeader style={{ gap: '10px 20px', backgroundImage: 'url(/home/iandg/galvanize/Vanilla-JS/vanilla-js/src/VanillaJS2.png)' }}>
-        <NavContainer style={{ gap: '10px 20px' }}>
+      <StyledHeader style={{ gap: '10px 20px'}}>
+        <NavContainer style={{ gap: '10px 20px', justifyContent:'space-between' }}>
           <NavLeft>
-          <Button onClick={() => navigate(`/favorites`)}> Favorites Page</Button>
+          <Image src={FAVORITES} alt="VanillaJS2" onClick={() => navigate(`/favorites`)}/>
+            {/* <img src='vanilla-js/src/FAVORITES.png'onClick={() => navigate(`/favorites`)}/> */}
+          {/* <Button onClick={() => navigate(`/favorites`)}> Favorites Page</Button> */}
             {/* <Logo src={VanillaJS} alt="VanillaJS" onClick={() => navigate('/')} /> */}
           </NavLeft>
           <NavCenter>
@@ -206,29 +233,31 @@ export const Header = () => {
 
           </NavCenter>
           <NavRight>
-            <Image src={VanillaJS2} alt="VanillaJS2" />
-            <form onSubmit={handleSubmit}>
-              <NavCenter>
+
+            <StyledForm onSubmit={handleSubmit}>
+              
                 <input type="text" placeholder="Search Meals" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
-                <input type="submit" />
-              </NavCenter>
-            </form>
+                <SubmitButton type="submit" />
+              
+            </StyledForm>
+            {/* <div className='searchcontainer'>
+              <form>
+                <input type='text' placeholder='Search a Meal Here'></input>
+                <button type='submit'></button>
+              </form>
+            </div> */}
           </NavRight>
         </NavContainer>
       </StyledHeader>
 
-      <StyledHeader2>
+      {/* <StyledHeader2>
         <Container>
           <Flex2>
-            <div style={{ marginLeft: '-25%' }}>
-
-              {/* <p> We are changing the way you eat! The choice is yours..</p> */}
-
-            </div>
+           
 
           </Flex2>
         </Container>
-      </StyledHeader2>
+      </StyledHeader2> */}
       <Container>
         <Container>
           <CatDropdown />
@@ -251,19 +280,19 @@ export const Header = () => {
       </Container> */}
         {/* <Flex>
           {/* <Button onClick={() => navigate(`/searchResults/r=`)}> All Recipes </Button> */}
-        <NavCenter>
+        {/* <NavCenter>
           <Button onClick={() => navigate(`/favorites`)}> Favorites Page</Button>
-        </NavCenter>
+        </NavCenter> */}
 
         {/* <Button onClick={()=> handleCatButtonClick}>Category<CatDropdown/></Button> */}
 
         {/* </Flex>  */}
-        <StyledHeader2>
+        {/* <StyledHeader2>
 
 
 
 
-        </StyledHeader2>
+        </StyledHeader2> */}
 
 
 

@@ -79,19 +79,15 @@ export const Favorites = () => {
     // const { displayArray, setDisplayArray } = useState([]);
     // setDisplayArray(localStorage.getItem('favArray'));
 
-    useEffect(() => {
-        console.log("Temp Fav Array", tempFavArray);
-        let tempArray = []
-        const local = localStorage.getItem('favArray');
-
-                tempArray.push(local)
-                tempArray.push(tempFavArray)
-                localStorage.setItem("favArray", tempArray);
-
+    // useEffect(() => {
+    //     console.log("Temp Fav Array", tempFavArray);
+    //     let tempArray = []
+    //     const local = JSON.parse(localStorage.getItem('favArray'));
+    //     tempArray.push(local)
+    //     tempArray.push(tempFavArray)
+    //     localStorage.setItem("favArray", JSON.stringify(tempArray));
+    // }, [tempFavArray])
         // setDisplayArray(local);
-
-    }, [tempFavArray])
-
 //   useEffect(() => {
 //     setTempLocal(localStorage.getItem('favArray'))
 // }, [tempFavArray])
@@ -100,53 +96,39 @@ export const Favorites = () => {
         //     const local = localStorage.getItem('favArray');
         //     setDisplayArray(local);
         // }, [tempFavArray])
+        // useEffect(() => {
+        //     const local = JSON.parse(localStorage.getItem('favArray'));
+        //     console.log("curr Local is ", local)
+        //     // setDisplayArray(local);
+        // }, [tempFavArray])
 
 
     return (
 
         <Container>
             
-            <button onClick={() => {
+            <Button onClick={() => {
             const local = localStorage.getItem('favArray');
+            // const local = JSON.parse(localStorage.getItem('favArray'));
             console.log(local);
-            }}>console log fav array local storage</button>
-            <button onClick={() => {
+            }}>console log fav array local storage</Button>
+            <Button onClick={() => {
             const local = localStorage.getItem('favArray');
             console.log("initial values: local: ", local, "tempfavarray: ", tempFavArray);
             localStorage.clear();
             setTempFavArray([]);
             console.log("local storage cleared");
-            }}>Clear local storage</button>
+            }}>Clear local storage</Button>
                 
         <h1>FAVORITES</h1>
             
         
         <h3>Results: {tempFavArray.length}</h3>
         
-            
-            {/* <Flex>
-                {tempFavArray.map(meal => {
-                    return (
-                        <StyledCardInfo onClick={() => {
-                            navigate(`/details/${meal.idMeal}`)
-                        }
-                        }>
-                              
-                            <h6 style={{fontSize:'20px'}}>{meal.strMeal}</h6>
-                            <Image src={meal.strMealThumb} alt={meal.strMeal}  />
-                            
-                        </StyledCardInfo>
-                    )
-                })}
-            
-        
-        </Flex> */}
-
-
-        
             <Flex>
 <>
                 {tempFavArray.map(meal => {
+
                     return (
                         <>
                         <StyledCardInfo>
@@ -157,7 +139,9 @@ export const Favorites = () => {
                             <Image src={meal.strMealThumb} alt={meal.strMeal} style={{width: '200px', height:'200px'}} />
                             </div>
                             <Button onClick={() => {
-                                console.log("remove from favorites not written")}}>Remove From Favorites</Button>
+                                let tempArray= tempFavArray.filter( el => el.strMeal !== meal.strMeal ); 
+                                setTempFavArray(tempArray);
+                            }}>Remove From Favorites</Button>
                         </StyledCardInfo>
 
                         </>

@@ -44,7 +44,11 @@ function App() {
     })
   }, [])
 
-
+//   useEffect(() => {
+//     const local = JSON.parse(localStorage.getItem('favArray'));
+//     console.log("curr Local is ", local)
+//     setTempLocal(local);
+// }, [tempFavArray])
 
 
 
