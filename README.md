@@ -23,9 +23,7 @@ Galvanize's Software Developer Immersive we were given the task of creating a we
 -Video instructions
 
 ##### Credits
--Spencer Bush
 -Ian Gardocki
 -Michel Alam
--Dana Petersen
--Tory Robinson
+-Claude Summers
 -Pariss Youngblood
